@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		D86679B7252EF2CA005C56F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679B6252EF2CA005C56F6 /* AppDelegate.swift */; };
 		D86679B9252EF2CA005C56F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */; };
-		D86679BB252EF2CA005C56F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679BA252EF2CA005C56F6 /* ViewController.swift */; };
+		D86679BB252EF2CA005C56F6 /* FridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */; };
 		D86679BE252EF2CA005C56F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86679BC252EF2CA005C56F6 /* Main.storyboard */; };
 		D86679C1252EF2CA005C56F6 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D86679BF252EF2CA005C56F6 /* Reciplease.xcdatamodeld */; };
 		D86679C3252EF2CD005C56F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D86679C2252EF2CD005C56F6 /* Assets.xcassets */; };
 		D86679C6252EF2CD005C56F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86679C4252EF2CD005C56F6 /* LaunchScreen.storyboard */; };
 		D86679D1252EF2CE005C56F6 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679D0252EF2CE005C56F6 /* RecipleaseTests.swift */; };
+		D86679DC252EF5AC005C56F6 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */; };
+		D86679DE252EF5BD005C56F6 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +33,7 @@
 		D86679B3252EF2CA005C56F6 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86679B6252EF2CA005C56F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D86679BA252EF2CA005C56F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeViewController.swift; sourceTree = "<group>"; };
 		D86679BD252EF2CA005C56F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D86679C0252EF2CA005C56F6 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		D86679C2252EF2CD005C56F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		D86679CC252EF2CE005C56F6 /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86679D0252EF2CE005C56F6 /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		D86679D2252EF2CE005C56F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
+		D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +87,9 @@
 			children = (
 				D86679B6252EF2CA005C56F6 /* AppDelegate.swift */,
 				D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */,
-				D86679BA252EF2CA005C56F6 /* ViewController.swift */,
+				D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */,
+				D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */,
+				D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */,
 				D86679BC252EF2CA005C56F6 /* Main.storyboard */,
 				D86679C2252EF2CD005C56F6 /* Assets.xcassets */,
 				D86679C4252EF2CD005C56F6 /* LaunchScreen.storyboard */,
@@ -204,8 +210,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D86679C1252EF2CA005C56F6 /* Reciplease.xcdatamodeld in Sources */,
-				D86679BB252EF2CA005C56F6 /* ViewController.swift in Sources */,
+				D86679DE252EF5BD005C56F6 /* RecipeDetailsViewController.swift in Sources */,
+				D86679BB252EF2CA005C56F6 /* FridgeViewController.swift in Sources */,
 				D86679B7252EF2CA005C56F6 /* AppDelegate.swift in Sources */,
+				D86679DC252EF5AC005C56F6 /* RecipesViewController.swift in Sources */,
 				D86679B9252EF2CA005C56F6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
