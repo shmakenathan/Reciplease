@@ -39,7 +39,7 @@ class FridgeViewController: UIViewController {
     private func handleRecipeResult(result: Result<RecipeResult, NetworkManagerError>) {
         DispatchQueue.main.async {
             switch result {
-            case .failure(let _):
+            case .failure( _):
                 print("error")
             case .success(let RecipeResult):
                 print(RecipeResult)

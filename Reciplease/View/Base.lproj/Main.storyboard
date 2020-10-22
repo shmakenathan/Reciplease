@@ -17,17 +17,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hmZ-E8-6XV">
-                                <rect key="frame" x="31" y="121" width="363" height="664"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hmZ-E8-6XV">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QZh-gu-rTx">
-                                        <rect key="frame" x="0.0" y="28" width="363" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="160" id="QZh-gu-rTx">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QZh-gu-rTx" id="5YI-EA-ULN">
-                                            <rect key="frame" x="0.0" y="0.0" width="363" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-K0-HJr">
+                                                    <rect key="frame" x="20" y="11" width="374" height="138"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casserole-espagnole-d1d4e0f7" highlightedImage="casserole-espagnole-d1d4e0f7" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-HF-FFg">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="138"/>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l2K-lv-WJI">
+                                                            <rect key="frame" x="10" y="75.333333333333329" width="167.33333333333334" height="52.666666666666671"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recette 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZw-Gs-hO8">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="167.33333333333334" height="32.333333333333336"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pomme de terre risole" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCd-ce-yTB">
+                                                                    <rect key="frame" x="0.0" y="32.333333333333343" width="167.33333333333334" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="Qh2-HF-FFg" secondAttribute="bottom" id="9Kq-eO-u0d"/>
+                                                        <constraint firstItem="l2K-lv-WJI" firstAttribute="leading" secondItem="hy9-K0-HJr" secondAttribute="leading" constant="10" id="EXQ-J4-ShT"/>
+                                                        <constraint firstItem="Qh2-HF-FFg" firstAttribute="leading" secondItem="hy9-K0-HJr" secondAttribute="leading" id="JOg-eo-ToR"/>
+                                                        <constraint firstItem="Qh2-HF-FFg" firstAttribute="top" secondItem="hy9-K0-HJr" secondAttribute="top" id="Y1s-9A-axU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Qh2-HF-FFg" secondAttribute="trailing" id="Yzv-dA-IeL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="l2K-lv-WJI" secondAttribute="bottom" constant="10" id="hwX-qH-4nh"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hy9-K0-HJr" firstAttribute="leading" secondItem="5YI-EA-ULN" secondAttribute="leadingMargin" id="5Ff-ek-7ig"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hy9-K0-HJr" secondAttribute="bottom" id="BvS-fm-SQy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hy9-K0-HJr" secondAttribute="trailing" id="VrS-VS-2io"/>
+                                                <constraint firstItem="hy9-K0-HJr" firstAttribute="top" secondItem="5YI-EA-ULN" secondAttribute="topMargin" id="ZAr-bQ-n5c"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -35,6 +77,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NS9-zr-QN2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NS9-zr-QN2" firstAttribute="bottom" secondItem="hmZ-E8-6XV" secondAttribute="bottom" id="Nni-yU-ddP"/>
+                            <constraint firstItem="hmZ-E8-6XV" firstAttribute="leading" secondItem="NS9-zr-QN2" secondAttribute="leading" id="jQz-7i-7KT"/>
+                            <constraint firstItem="NS9-zr-QN2" firstAttribute="trailing" secondItem="hmZ-E8-6XV" secondAttribute="trailing" id="q7n-nA-66j"/>
+                            <constraint firstItem="hmZ-E8-6XV" firstAttribute="top" secondItem="NS9-zr-QN2" secondAttribute="top" id="r4p-eA-OZE"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="gzV-7N-hro"/>
                 </viewController>
@@ -300,6 +348,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="casserole-espagnole-d1d4e0f7" width="1200" height="630"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
