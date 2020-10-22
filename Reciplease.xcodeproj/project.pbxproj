@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D830FB262541109D006214ED /* RecipeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB252541109D006214ED /* RecipeResult.swift */; };
+		D830FB2B25411180006214ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB2A25411180006214ED /* NetworkManager.swift */; };
+		D830FB2F254111C0006214ED /* NetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB2E254111C0006214ED /* NetworkManagerError.swift */; };
+		D830FB332541189B006214ED /* RecipeNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB322541189B006214ED /* RecipeNetworkManager.swift */; };
 		D86679B7252EF2CA005C56F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679B6252EF2CA005C56F6 /* AppDelegate.swift */; };
 		D86679B9252EF2CA005C56F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */; };
 		D86679BB252EF2CA005C56F6 /* FridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */; };
@@ -30,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D830FB252541109D006214ED /* RecipeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResult.swift; sourceTree = "<group>"; };
+		D830FB2A25411180006214ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D830FB2E254111C0006214ED /* NetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerError.swift; sourceTree = "<group>"; };
+		D830FB322541189B006214ED /* RecipeNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeNetworkManager.swift; sourceTree = "<group>"; };
 		D86679B3252EF2CA005C56F6 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86679B6252EF2CA005C56F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +72,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D830FB1D2541102C006214ED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */,
+				D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */,
+				D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D830FB1E25411043006214ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D86679C4252EF2CD005C56F6 /* LaunchScreen.storyboard */,
+				D86679BC252EF2CA005C56F6 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D830FB2325411062006214ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D830FB292541116F006214ED /* Service */,
+				D830FB2425411079006214ED /* Decodable */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D830FB2425411079006214ED /* Decodable */ = {
+			isa = PBXGroup;
+			children = (
+				D830FB252541109D006214ED /* RecipeResult.swift */,
+			);
+			path = Decodable;
+			sourceTree = "<group>";
+		};
+		D830FB292541116F006214ED /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D830FB2A25411180006214ED /* NetworkManager.swift */,
+				D830FB322541189B006214ED /* RecipeNetworkManager.swift */,
+				D830FB2E254111C0006214ED /* NetworkManagerError.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		D86679AA252EF2CA005C56F6 = {
 			isa = PBXGroup;
 			children = (
@@ -87,12 +141,10 @@
 			children = (
 				D86679B6252EF2CA005C56F6 /* AppDelegate.swift */,
 				D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */,
-				D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */,
-				D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */,
-				D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */,
-				D86679BC252EF2CA005C56F6 /* Main.storyboard */,
+				D830FB2325411062006214ED /* Model */,
+				D830FB1E25411043006214ED /* View */,
+				D830FB1D2541102C006214ED /* Controller */,
 				D86679C2252EF2CD005C56F6 /* Assets.xcassets */,
-				D86679C4252EF2CD005C56F6 /* LaunchScreen.storyboard */,
 				D86679C7252EF2CD005C56F6 /* Info.plist */,
 				D86679BF252EF2CA005C56F6 /* Reciplease.xcdatamodeld */,
 			);
@@ -209,9 +261,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830FB262541109D006214ED /* RecipeResult.swift in Sources */,
+				D830FB2F254111C0006214ED /* NetworkManagerError.swift in Sources */,
 				D86679C1252EF2CA005C56F6 /* Reciplease.xcdatamodeld in Sources */,
 				D86679DE252EF5BD005C56F6 /* RecipeDetailsViewController.swift in Sources */,
 				D86679BB252EF2CA005C56F6 /* FridgeViewController.swift in Sources */,
+				D830FB2B25411180006214ED /* NetworkManager.swift in Sources */,
+				D830FB332541189B006214ED /* RecipeNetworkManager.swift in Sources */,
 				D86679B7252EF2CA005C56F6 /* AppDelegate.swift in Sources */,
 				D86679DC252EF5AC005C56F6 /* RecipesViewController.swift in Sources */,
 				D86679B9252EF2CA005C56F6 /* SceneDelegate.swift in Sources */,
