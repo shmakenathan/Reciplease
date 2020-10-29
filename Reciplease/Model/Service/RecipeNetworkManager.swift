@@ -8,18 +8,22 @@
 
 import Foundation
 class RecipeNetworkManager {
-
-        var networkManager = NetworkManager()
+    
+    var networkManager = NetworkManager()
+    
+    func fetchRecipe(ingredients: [String], completionHandler: @escaping (Result<RecipeResult, NetworkManagerError>) -> Void) {
         
-        func fetchRecipe(ingredient: String, completionHandler: @escaping (Result<RecipeResult, NetworkManagerError>) -> Void) {
-            
-            guard let url = createUrl(ingredients: ingredient) else {
-                completionHandler(.failure(.unknownErrorOccured))
-                return
-            }
-            networkManager.fetchResult(url: url, completionHandler: completionHandler)
+        guard let url = createUrl(ingredients: ingredients) else {
+            completionHandler(.failure(.unknownErrorOccured))
+            return
         }
-        func createUrl(ingredients: String) -> URL? {
+        
+        networkManager.fetchResult(url: url, completionHandler: completionHandler)
+    }
+    
+    private func createUrl(ingredients: [String]) -> URL? {
+        
+        let ingredientsValue = ingredients.reduce("") { $0 + $1 + " " }
         
         let key = "1f08d1ae3fc0ae814670941699ecfbcc"
         let id = "db2d749e"
@@ -29,7 +33,7 @@ class RecipeNetworkManager {
         urlComponents.host = "api.edamam.com"
         urlComponents.path = "/search"
         urlComponents.queryItems = [
-            URLQueryItem(name: "q", value: ingredients),
+            URLQueryItem(name: "q", value: ingredientsValue),
             URLQueryItem(name: "app_id", value: id),
             URLQueryItem(name: "app_key", value: key)
         ]

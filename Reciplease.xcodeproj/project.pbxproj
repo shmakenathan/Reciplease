@@ -11,6 +11,9 @@
 		D830FB2B25411180006214ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB2A25411180006214ED /* NetworkManager.swift */; };
 		D830FB2F254111C0006214ED /* NetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB2E254111C0006214ED /* NetworkManagerError.swift */; };
 		D830FB332541189B006214ED /* RecipeNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB322541189B006214ED /* RecipeNetworkManager.swift */; };
+		D855429B25416A82002BF3AB /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855429A25416A82002BF3AB /* RecipeTableViewCell.swift */; };
+		D85542A12549F1B2002BF3AB /* RecipleaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85542A02549F1B2002BF3AB /* RecipleaseError.swift */; };
+		D85542A5254A32A4002BF3AB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85542A4254A32A4002BF3AB /* BaseViewController.swift */; };
 		D86679B7252EF2CA005C56F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679B6252EF2CA005C56F6 /* AppDelegate.swift */; };
 		D86679B9252EF2CA005C56F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */; };
 		D86679BB252EF2CA005C56F6 /* FridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */; };
@@ -38,6 +41,9 @@
 		D830FB2A25411180006214ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D830FB2E254111C0006214ED /* NetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerError.swift; sourceTree = "<group>"; };
 		D830FB322541189B006214ED /* RecipeNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeNetworkManager.swift; sourceTree = "<group>"; };
+		D855429A25416A82002BF3AB /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		D85542A02549F1B2002BF3AB /* RecipleaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseError.swift; sourceTree = "<group>"; };
+		D85542A4254A32A4002BF3AB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D86679B3252EF2CA005C56F6 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86679B6252EF2CA005C56F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D86679B8252EF2CA005C56F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +83,8 @@
 			children = (
 				D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */,
 				D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */,
+				D85542A4254A32A4002BF3AB /* BaseViewController.swift */,
+				D85542A02549F1B2002BF3AB /* RecipleaseError.swift */,
 				D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */,
 			);
 			path = Controller;
@@ -87,6 +95,7 @@
 			children = (
 				D86679C4252EF2CD005C56F6 /* LaunchScreen.storyboard */,
 				D86679BC252EF2CA005C56F6 /* Main.storyboard */,
+				D855429A25416A82002BF3AB /* RecipeTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -261,9 +270,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85542A5254A32A4002BF3AB /* BaseViewController.swift in Sources */,
 				D830FB262541109D006214ED /* RecipeResult.swift in Sources */,
 				D830FB2F254111C0006214ED /* NetworkManagerError.swift in Sources */,
 				D86679C1252EF2CA005C56F6 /* Reciplease.xcdatamodeld in Sources */,
+				D85542A12549F1B2002BF3AB /* RecipleaseError.swift in Sources */,
+				D855429B25416A82002BF3AB /* RecipeTableViewCell.swift in Sources */,
 				D86679DE252EF5BD005C56F6 /* RecipeDetailsViewController.swift in Sources */,
 				D86679BB252EF2CA005C56F6 /* FridgeViewController.swift in Sources */,
 				D830FB2B25411180006214ED /* NetworkManager.swift in Sources */,

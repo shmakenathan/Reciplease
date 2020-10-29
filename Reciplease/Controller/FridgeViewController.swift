@@ -8,41 +8,52 @@
 
 import UIKit
 
-enum FridgeError: Error {
-    case ingredientAlreadyPresent
-}
 
-class FridgeViewController: UIViewController {
+
+class FridgeViewController: BaseViewController {
     
     
     @IBOutlet weak var ingredientUiTextField: UITextField!
-    
     @IBOutlet weak var ingredientsTableView: UITableView!
-    
     @IBOutlet weak var searchTapButton: UIButton!
+    
+    
     @IBAction func addTapButton(_ sender: Any) {
-        
         guard let ingredient = ingredientUiTextField.text else { return }
-        
         do {
             try addIngredienttoList(ingredient: ingredient)
         } catch {
-            print("should display alert error")
+            presentAlert(title: "Error", message: RecipleaseError.ingredientAlreadyPresent.message)
         }
-        
     }
     
     @IBAction func searchTapButton(_ sender: Any) {
-        recipeNetworkManager.fetchRecipe(ingredient: toString(ingredient: ingredients), completionHandler: handleRecipeResult(result:))
+        if ingredients.isEmpty {
+            presentAlert(title: "Error", message: RecipleaseError.noIngredient.message)
+        }
+        self.changeLoadingIndicatorVisibility(shouldShow: true)
+        recipeNetworkManager.fetchRecipe(
+            ingredients: ingredients,
+            completionHandler: handleRecipeResult(result:)
+        )
     }
     
     private func handleRecipeResult(result: Result<RecipeResult, NetworkManagerError>) {
         DispatchQueue.main.async {
             switch result {
-            case .failure( _):
-                print("error")
-            case .success(let RecipeResult):
-                print(RecipeResult)
+            case .failure(let erreur):
+                self.changeLoadingIndicatorVisibility(shouldShow: false)
+                self.presentAlert(title: "Error", message: erreur.message)
+                
+            case .success(let recipeResult):
+                self.changeLoadingIndicatorVisibility(shouldShow: false)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
+                recipesViewController.recipeResult = recipeResult
+                
+                
+                self.navigationController?.pushViewController(recipesViewController, animated: true)
             }
         }
     }
@@ -67,26 +78,14 @@ class FridgeViewController: UIViewController {
     // datasource
     
     private func addIngredienttoList(ingredient: String) throws {
-        guard !ingredients.contains(ingredient) else {
-            throw FridgeError.ingredientAlreadyPresent
+        guard !ingredients.contains(ingredient.capitalized) else {
+            throw RecipleaseError.ingredientAlreadyPresent
         }
-        ingredients.append(ingredient)
+        ingredients.append(ingredient.capitalized)
     }
     
-    func toString(ingredient: [String]) -> String {
-        var list = ""
-        if ingredient.count > 0 {
-            for i in ingredient {
-                list = list + i + " "
-            }
-            
-        }
-        return list
-    }
     
-    var ingredients: [String] = [
-        
-    ] {
+    private var ingredients: [String] = [] {
         didSet {
             ingredientsTableView.reloadData()
         }
