@@ -10,6 +10,7 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var ingredientList: UILabel!

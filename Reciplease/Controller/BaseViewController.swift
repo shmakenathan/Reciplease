@@ -16,7 +16,6 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoadingIndicator()
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
    
     
@@ -27,6 +26,7 @@ class BaseViewController: UIViewController {
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        activityIndicatorView.color = .white
     }
     
     func changeLoadingIndicatorVisibility(shouldShow: Bool) {

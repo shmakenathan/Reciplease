@@ -20,31 +20,32 @@ class RecipesViewController: UIViewController {
         recipesTableView.dataSource = self
         
     }
-    
-    
-    @IBAction func tapToDetailRecipe(_ sender: Any) {
-        
-    }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }
 
 extension RecipesViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedRowIndex = indexPath.row
+        guard let selectedRecipe = recipeResult?.hits[selectedRowIndex].recipe else { return }
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let recipeDetailsViewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else { return }
+        recipeDetailsViewController.selectedRecipe = selectedRecipe
+        
+        self.navigationController?.pushViewController(recipeDetailsViewController, animated: true)
+        
+        
+    }
     
     
 }
 
 
 extension RecipesViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         recipeResult?.hits.count ?? 0
     }
@@ -64,6 +65,25 @@ extension RecipesViewController: UITableViewDataSource {
             print("error")
         }
         cell.ingredientList.text = recipeResult?.hits[indexPath.row].recipe.ingredientLines[0]
+        
+        
+        let gradient = CAGradientLayer()
+        gradient.type = .axial
+        
+        gradient.colors = [
+            UIColor.clear.cgColor,
+            UIColor.black.withAlphaComponent(0.8).cgColor
+        ]
+        
+        gradient.startPoint = CGPoint(x: 1, y: 0)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        gradient.frame = cell.bounds
+        
+        gradient.locations = [0.2, 1]
+        cell.gradientView.layer.addSublayer(gradient)
+        
+        
+        
         return cell
         
     }

@@ -18,13 +18,18 @@ class FridgeViewController: BaseViewController {
     @IBOutlet weak var searchTapButton: UIButton!
     
     
+    
     @IBAction func addTapButton(_ sender: Any) {
         guard let ingredient = ingredientUiTextField.text else { return }
         do {
             try addIngredienttoList(ingredient: ingredient)
         } catch {
-            presentAlert(title: "Error", message: RecipleaseError.ingredientAlreadyPresent.message)
+            handleError(error: error)
         }
+        ingredientUiTextField.text = ""
+    }
+    @IBAction func deleteTapButton(_ sender: Any) {
+        ingredients = []
     }
     
     @IBAction func searchTapButton(_ sender: Any) {
@@ -38,6 +43,14 @@ class FridgeViewController: BaseViewController {
         )
     }
     
+    private func handleError(error: Error) {
+        guard let recipleaseError = error as? RecipleaseError else {
+            presentAlert(title: "Error", message: "Unknown error")
+            return
+        }
+        presentAlert(title: "Error", message: recipleaseError.message)
+    }
+    
     private func handleRecipeResult(result: Result<RecipeResult, NetworkManagerError>) {
         DispatchQueue.main.async {
             switch result {
@@ -47,13 +60,16 @@ class FridgeViewController: BaseViewController {
                 
             case .success(let recipeResult):
                 self.changeLoadingIndicatorVisibility(shouldShow: false)
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
-                recipesViewController.recipeResult = recipeResult
-                
-                
-                self.navigationController?.pushViewController(recipesViewController, animated: true)
+                if recipeResult.count == 0 {
+                    self.presentAlert(title: "Error", message: RecipleaseError.noResults.message)
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
+                    recipesViewController.recipeResult = recipeResult
+                    
+                    
+                    self.navigationController?.pushViewController(recipesViewController, animated: true)
+                }
             }
         }
     }
@@ -61,6 +77,7 @@ class FridgeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchTapButton.layer.cornerRadius = 10
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
@@ -78,10 +95,20 @@ class FridgeViewController: BaseViewController {
     // datasource
     
     private func addIngredienttoList(ingredient: String) throws {
-        guard !ingredients.contains(ingredient.capitalized) else {
-            throw RecipleaseError.ingredientAlreadyPresent
+        if ingredient == "" {
+            throw RecipleaseError.noIngredient
+        } else {
+            let noWhiteIngredient = ingredient.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            let ingredientsContainsInputIngredient = ingredients.contains(
+                where: { $0.caseInsensitiveCompare(noWhiteIngredient) == .orderedSame }
+            )
+            
+            guard !ingredientsContainsInputIngredient else {
+                throw RecipleaseError.ingredientAlreadyPresent
+            }
+            ingredients.append(ingredient)
         }
-        ingredients.append(ingredient.capitalized)
     }
     
     
@@ -111,7 +138,7 @@ extension FridgeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.textLabel?.text = "- "+ingredients[indexPath.row]
+        cell.textLabel?.text = "- "+ingredients[indexPath.row].capitalized
         
         return cell
     }
