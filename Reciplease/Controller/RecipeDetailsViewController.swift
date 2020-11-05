@@ -13,13 +13,14 @@ class RecipeDetailsViewController: UIViewController {
     var selectedRecipe: Recipe?
     
     @IBOutlet weak var imageView: UIImageView!
-    
+
     @IBOutlet weak var gradientView: UIView!
     
     @IBOutlet weak var ingredientList: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var getDirectionsButton: UIButton!
     
+    @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +31,32 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     @IBAction func addFavori(_ sender: Any) {
+        switch favoriteBarButtonItem.image {
+        case UIImage(systemName: "star"):
+            favoriteBarButtonItem.image = UIImage(systemName: "star.fill")
+        default:
+            favoriteBarButtonItem.image = UIImage(systemName: "star")
+        }
+        
+        
     }
+    
     @IBAction func tapToGetDirections(_ sender: Any) {
+        guard let urlSelectedRecipe = selectedRecipe?.url else {
+            return
+        }
+        if let url = URL(string: urlSelectedRecipe) {
+            UIApplication.shared.open(url)
+        }
     }
+    
     private func addGradient(view: UIView) {
         let gradient = CAGradientLayer()
         gradient.type = .axial
         
         gradient.colors = [
             UIColor.clear.cgColor,
-            UIColor.black.withAlphaComponent(0.8).cgColor
+            UIColor.darkGray.withAlphaComponent(1).cgColor
         ]
         
         gradient.startPoint = CGPoint(x: 1, y: 0)
