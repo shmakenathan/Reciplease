@@ -7,8 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class RecipesViewController: UIViewController {
+    
+    let favoriteRecipeDataManager = ServiceContainer.favoriteRecipeDataManager
+    
+    var shouldUseFavoriteRecipe = true
+    
+    var favoritedRecipes: [RecipeSave] = [] {
+        didSet {
+            recipesTableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var recipesTableView: UITableView!
     var recipeResult: RecipeResult?
@@ -19,6 +30,16 @@ class RecipesViewController: UIViewController {
         recipesTableView.delegate = self
         recipesTableView.dataSource = self
         
+        
+        if shouldUseFavoriteRecipe {
+            switch favoriteRecipeDataManager.getAll() {
+            case .failure:
+                print("Should display alert")
+            case .success(let favoritedRecipes):
+                self.favoritedRecipes = favoritedRecipes
+            }
+        }
+       
     }
 
     
@@ -64,8 +85,8 @@ extension RecipesViewController: UITableViewDataSource {
         } catch _ {
             print("error")
         }
-        cell.ingredientList.text = recipeResult?.hits[indexPath.row].recipe.ingredientLines[0]
-        
+       
+        cell.ingredientList.text = "\(recipeResult?.hits[indexPath.row].recipe.totalTime ?? 0) Minutes"
         
         let gradient = CAGradientLayer()
         gradient.type = .axial

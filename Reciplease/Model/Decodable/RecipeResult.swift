@@ -7,29 +7,21 @@ import Foundation
 
 // MARK: - RecipeResult
 struct RecipeResult: Codable {
-    let count: Int
-    let hits: [Hit]
+    var count: Int
+    var hits: [Hit]
 }
 
 // MARK: - Hit
 struct Hit: Codable {
-    let recipe: Recipe
+    var recipe: Recipe
 }
 
 // MARK: - Recipe
 struct Recipe: Codable {
-    let label: String
-    let image: String
-    let url: String
-    let ingredientLines: [String]
-    let ingredients: [Ingredient]
-    let totalTime: Int
+    var label: String
+    var image: String
+    var url: String
+    var ingredientLines: [String]
+    var totalTime: Int
 }
 
-
-// MARK: - Ingredient
-struct Ingredient: Codable {
-    let text: String
-    let weight: Double
-    let image: String?
-}

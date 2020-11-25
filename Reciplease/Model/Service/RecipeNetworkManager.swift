@@ -7,9 +7,10 @@
 //
 
 import Foundation
+
 class RecipeNetworkManager {
     
-    var networkManager = NetworkManager()
+    var networkManager: NetworkManagerProtocol = AlamofireNetworkManager()
     
     func fetchRecipe(ingredients: [String], completionHandler: @escaping (Result<RecipeResult, NetworkManagerError>) -> Void) {
         
@@ -20,6 +21,8 @@ class RecipeNetworkManager {
         
         networkManager.fetchResult(url: url, completionHandler: completionHandler)
     }
+    
+
     
     private func createUrl(ingredients: [String]) -> URL? {
         

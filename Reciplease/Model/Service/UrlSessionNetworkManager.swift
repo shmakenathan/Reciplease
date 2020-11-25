@@ -1,5 +1,5 @@
 //
-//  NetworkManager.swift
+//  UrlSessionNetworkManager.swift
 //  Reciplease
 //
 //  Created by Nathan on 22/10/2020.
@@ -7,13 +7,49 @@
 //
 
 import Foundation
+import Alamofire
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void)
+}
+
+
+class AlamofireNetworkManager: NetworkManagerProtocol {
+    func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void) {
+        
+
+        let urlRequest = URLRequest(url: url)
+        
+        AF.request(urlRequest)
+            .validate()
+            .responseDecodable(of: T.self) { response in
+                
+                guard response.error == nil else {
+                    completionHandler(.failure(.unknownErrorOccured))
+                    return
+                }
+                
+                guard let result = response.value else {
+                    completionHandler(.failure(.noData))
+                    return
+                }
+                
+                completionHandler(.success(result))
+                return
+            }
+        
+        
+    }
+}
+
+class UrlSessionNetworkManager: NetworkManagerProtocol {
     init(session: URLSession = URLSession.shared) {
         self.session = session
     }
     
     let session: URLSession
+    
+    
     
     func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void) {
         

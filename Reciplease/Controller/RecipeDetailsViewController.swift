@@ -7,19 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class RecipeDetailsViewController: UIViewController {
     
     var selectedRecipe: Recipe?
-    
+    let favoriteRecipeDataManager = ServiceContainer.favoriteRecipeDataManager
     @IBOutlet weak var imageView: UIImageView!
-
     @IBOutlet weak var gradientView: UIView!
-    
     @IBOutlet weak var ingredientList: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var getDirectionsButton: UIButton!
-    
     @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -34,6 +32,10 @@ class RecipeDetailsViewController: UIViewController {
         switch favoriteBarButtonItem.image {
         case UIImage(systemName: "star"):
             favoriteBarButtonItem.image = UIImage(systemName: "star.fill")
+            guard let recipe = selectedRecipe else {
+                return
+            }
+            favoriteRecipeDataManager.save(recipeToSave: recipe)
         default:
             favoriteBarButtonItem.image = UIImage(systemName: "star")
         }
@@ -81,6 +83,7 @@ class RecipeDetailsViewController: UIViewController {
         }
         
     }
+   
 }
 extension RecipeDetailsViewController: UITableViewDelegate {
     

@@ -42,7 +42,7 @@ class FridgeViewController: BaseViewController {
             completionHandler: handleRecipeResult(result:)
         )
     }
-    
+
     private func handleError(error: Error) {
         guard let recipleaseError = error as? RecipleaseError else {
             presentAlert(title: "Error", message: "Unknown error")
@@ -66,6 +66,7 @@ class FridgeViewController: BaseViewController {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
                     recipesViewController.recipeResult = recipeResult
+                    recipesViewController.shouldUseFavoriteRecipe = false
                     
                     
                     self.navigationController?.pushViewController(recipesViewController, animated: true)
