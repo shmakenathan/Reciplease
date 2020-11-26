@@ -31,6 +31,7 @@
 		D86679DC252EF5AC005C56F6 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */; };
 		D86679DE252EF5BD005C56F6 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */; };
 		D8AC2B662566F88B00A0B4E8 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8AC2B642566F88B00A0B4E8 /* Reciplease.xcdatamodeld */; };
+		D8E67539256F3E9600B90574 /* RecipeSaveToRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E67538256F3E9600B90574 /* RecipeSaveToRecipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		D8AC2B652566F88B00A0B4E8 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		D8AC2B692567298800A0B4E8 /* RecipeSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSave.swift; sourceTree = "<group>"; };
+		D8E67538256F3E9600B90574 /* RecipeSaveToRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSaveToRecipe.swift; sourceTree = "<group>"; };
 		EEFE2E910BC1645AE6422502 /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 				D827B9882567AABE008CAEAE /* CoreDataManager.swift */,
 				D827B98C2567AAF9008CAEAE /* ContextProvider.swift */,
 				D827B99A2567B7EF008CAEAE /* FavoriteRecipeDataManager.swift */,
+				D8E67538256F3E9600B90574 /* RecipeSaveToRecipe.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				D86679DE252EF5BD005C56F6 /* RecipeDetailsViewController.swift in Sources */,
 				D86679BB252EF2CA005C56F6 /* FridgeViewController.swift in Sources */,
 				D830FB2B25411180006214ED /* UrlSessionNetworkManager.swift in Sources */,
+				D8E67539256F3E9600B90574 /* RecipeSaveToRecipe.swift in Sources */,
 				D830FB332541189B006214ED /* RecipeNetworkManager.swift in Sources */,
 				D86679B7252EF2CA005C56F6 /* AppDelegate.swift in Sources */,
 				D86679DC252EF5AC005C56F6 /* RecipesViewController.swift in Sources */,

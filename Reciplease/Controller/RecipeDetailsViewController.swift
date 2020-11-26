@@ -9,10 +9,10 @@
 import UIKit
 import CoreData
 
-class RecipeDetailsViewController: UIViewController {
+class RecipeDetailsViewController: BaseViewController {
     
     var selectedRecipe: Recipe?
-    let favoriteRecipeDataManager = ServiceContainer.favoriteRecipeDataManager
+    let favoriteRecipeDataManager = FavoriteRecipeDataManager()
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var ingredientList: UITableView!
@@ -28,19 +28,38 @@ class RecipeDetailsViewController: UIViewController {
         addGradient(view: gradientView)
     }
     
-    @IBAction func addFavori(_ sender: Any) {
-        switch favoriteBarButtonItem.image {
-        case UIImage(systemName: "star"):
-            favoriteBarButtonItem.image = UIImage(systemName: "star.fill")
-            guard let recipe = selectedRecipe else {
-                return
-            }
-            favoriteRecipeDataManager.save(recipeToSave: recipe)
-        default:
-            favoriteBarButtonItem.image = UIImage(systemName: "star")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        handleSelectedFavoriteState()
+    }
+    
+    private func handleSelectedFavoriteState() {
+        guard let selectedRecipe = selectedRecipe else { return }
+        switch favoriteRecipeDataManager.isRecipeFavorited(recipe: selectedRecipe) {
+        case .failure(let error):
+            presentAlert(title: "Error", message: error.localizedDescription)
+        case .success(let isFavorited):
+            isPresentedRecipeFavorited = isFavorited
         }
-        
-        
+    }
+    
+    private var isPresentedRecipeFavorited = false {
+        didSet {
+            favoriteBarButtonItem.image = isPresentedRecipeFavorited ?
+                UIImage(systemName: "star.fill") :
+                UIImage(systemName: "star")
+        }
+    }
+   
+    
+    @IBAction func didTapOnFavoriteBarButton(_ sender: Any) {
+        guard let selectedRecipe = selectedRecipe else { return }
+        if isPresentedRecipeFavorited {
+            deleteSelectedRecipe(selectedRecipe)
+        } else {
+            saveSelectedRecipe(selectedRecipe)
+        }
     }
     
     @IBAction func tapToGetDirections(_ sender: Any) {
@@ -84,6 +103,27 @@ class RecipeDetailsViewController: UIViewController {
         
     }
    
+    
+    
+    private func saveSelectedRecipe(_ selectedRecipe: Recipe) {
+        switch favoriteRecipeDataManager.save(recipeToSave: selectedRecipe) {
+        case .failure(let error):
+            presentAlert(title: "Error", message: error.localizedDescription)
+        case .success: break
+        }
+        
+        handleSelectedFavoriteState()
+    }
+    
+    private func deleteSelectedRecipe(_ selectedRecipe: Recipe) {
+        switch favoriteRecipeDataManager.deleteRecipe(recipe: selectedRecipe) {
+        case .failure(let error):
+            presentAlert(title: "Error", message: error.localizedDescription)
+        case .success: break
+        }
+        
+        handleSelectedFavoriteState()
+    }
 }
 extension RecipeDetailsViewController: UITableViewDelegate {
     

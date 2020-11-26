@@ -17,7 +17,7 @@ enum CoreDataManagerError: Error {
 
 
 class CoreDataManager {
-    init(contextProvider: ContextProvider = ServiceContainer.contextProvider) {
+    init(contextProvider: ContextProvider = ContextProvider()) {
         self.contextProvider = contextProvider
     }
     
@@ -27,8 +27,9 @@ class CoreDataManager {
     
     
     
-    func getAllElements<T: NSFetchRequestResult>(resultType: T.Type) -> Result<[T], CoreDataManagerError>  {
+    func getAllElements<T: NSFetchRequestResult>(resultType: T.Type, predicate: NSPredicate?) -> Result<[T], CoreDataManagerError>  {
         let request = NSFetchRequest<T>(entityName: "\(T.self)")
+        request.predicate = predicate
         
 
         let fetchResult = contextProvider.fetch(request: request)
@@ -43,8 +44,9 @@ class CoreDataManager {
     
     
     
-    func removeAllElements<T: NSManagedObject>(resultType: T.Type) -> Result<Void, CoreDataManagerError> {
-        let elementsToDeleteResult = getAllElements(resultType: resultType)
+    func removeAllElements<T: NSManagedObject>(resultType: T.Type, predicate: NSPredicate?) -> Result<Void, CoreDataManagerError> {
+        let elementsToDeleteResult = getAllElements(resultType: resultType, predicate: predicate)
+        
         
         switch elementsToDeleteResult {
         case .failure:
@@ -58,6 +60,28 @@ class CoreDataManager {
         }
     }
     
+//    func deleteFavoriteRecipe(withUrl url: String) throws {
+//        let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
+//        request.predicate = NSPredicate(format: "url == %@", url)
+//
+//        var favoriteRecipesToRemove: [FavoriteRecipe]
+//
+//        do {
+//            favoriteRecipesToRemove = try coreDataManager.contextProvider.fetch(request)
+//        } catch {
+//            throw error
+//        }
+//
+//        favoriteRecipesToRemove.forEach {
+//            coreDataManager.contextProvider.delete($0)
+//        }
+//        do {
+//            try coreDataManager.save()
+//        } catch {
+//            throw error
+//        }
+//    }
+//
     func save() -> Result<Void, CoreDataManagerError> {
         let saveResult = contextProvider.save()
         

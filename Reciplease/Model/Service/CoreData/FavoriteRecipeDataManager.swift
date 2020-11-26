@@ -6,17 +6,13 @@
 //  Copyright © 2020 NathanChicha. All rights reserved.
 //
 
-class ServiceContainer {
-    static let contextProvider = ContextProvider()
-    static let coreDataManager = CoreDataManager()
-    static let favoriteRecipeDataManager = FavoriteRecipeDataManager()
-}
+
 
 import CoreData
 
 class FavoriteRecipeDataManager {
     
-    init(coreDataManager: CoreDataManager = ServiceContainer.coreDataManager) {
+    init(coreDataManager: CoreDataManager = CoreDataManager()) {
         self.coreDataManager = coreDataManager
     }
     
@@ -24,7 +20,7 @@ class FavoriteRecipeDataManager {
     
     
     func getAll() -> Result<[RecipeSave], CoreDataManagerError> {
-        return coreDataManager.getAllElements(resultType: RecipeSave.self)
+        return coreDataManager.getAllElements(resultType: RecipeSave.self, predicate: nil)
     }
     
     func save(recipeToSave: Recipe) -> Result<Void, CoreDataManagerError> {
@@ -41,5 +37,25 @@ class FavoriteRecipeDataManager {
         return coreDataManager.save()
     }
     
+    
+    func isRecipeFavorited(recipe: Recipe) -> Result<Bool, CoreDataManagerError> {
+        switch getAll() {
+        case .success(let savedRecipes):
+            let isRecipeFavorited = savedRecipes.contains(where: { (savedRecipe) -> Bool in
+                savedRecipe.url == recipe.url
+            })
+            
+            return .success(isRecipeFavorited)
+            
+        case .failure(let coreDataError):
+            return .failure(coreDataError)
+        }
+    }
+
+    
+    func deleteRecipe(recipe: Recipe) -> Result<Void, CoreDataManagerError> {
+        let predicate = NSPredicate(format: "url == %@", recipe.url)
+        return coreDataManager.removeAllElements(resultType: RecipeSave.self, predicate: predicate)
+    }
     
 }
