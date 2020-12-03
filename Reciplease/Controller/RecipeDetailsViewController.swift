@@ -11,8 +11,8 @@ import CoreData
 
 class RecipeDetailsViewController: BaseViewController {
     
-    var selectedRecipe: Recipe?
-    let favoriteRecipeDataManager = FavoriteRecipeDataManager()
+    // MARK: IBOutlet
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var ingredientList: UITableView!
@@ -20,38 +20,8 @@ class RecipeDetailsViewController: BaseViewController {
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        titleLabel.text = selectedRecipe?.label
-        printImage()
-        getDirectionsButton.layer.cornerRadius = 10
-        addGradient(view: gradientView)
-    }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        handleSelectedFavoriteState()
-    }
-    
-    private func handleSelectedFavoriteState() {
-        guard let selectedRecipe = selectedRecipe else { return }
-        switch favoriteRecipeDataManager.isRecipeFavorited(recipe: selectedRecipe) {
-        case .failure(let error):
-            presentAlert(title: "Error", message: error.localizedDescription)
-        case .success(let isFavorited):
-            isPresentedRecipeFavorited = isFavorited
-        }
-    }
-    
-    private var isPresentedRecipeFavorited = false {
-        didSet {
-            favoriteBarButtonItem.image = isPresentedRecipeFavorited ?
-                UIImage(systemName: "star.fill") :
-                UIImage(systemName: "star")
-        }
-    }
-   
+    // MARK: IBAction
     
     @IBAction func didTapOnFavoriteBarButton(_ sender: Any) {
         guard let selectedRecipe = selectedRecipe else { return }
@@ -71,15 +41,55 @@ class RecipeDetailsViewController: BaseViewController {
         }
     }
     
+    // MARK: Properties - Public
+    
+    var selectedRecipe: Recipe?
+    
+    // MARK: Properties - Private
+    
+    private let favoriteRecipeDataManager = FavoriteRecipeDataManager()
+    private var isPresentedRecipeFavorited = false {
+        didSet {
+            favoriteBarButtonItem.image = isPresentedRecipeFavorited ?
+                UIImage(systemName: "star.fill") :
+                UIImage(systemName: "star")
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        titleLabel.text = selectedRecipe?.label
+        printImage()
+        getDirectionsButton.layer.cornerRadius = 10
+        addGradient(view: gradientView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        handleSelectedFavoriteState()
+    }
+    
+    // MARK: Methods - Private
+    
+    private func handleSelectedFavoriteState() {
+        guard let selectedRecipe = selectedRecipe else { return }
+        switch favoriteRecipeDataManager.isRecipeFavorited(recipe: selectedRecipe) {
+        case .failure(let error):
+            presentAlert(title: "Error", message: error.localizedDescription)
+        case .success(let isFavorited):
+            isPresentedRecipeFavorited = isFavorited
+        }
+    }
+    
+    
+    
     private func addGradient(view: UIView) {
         let gradient = CAGradientLayer()
         gradient.type = .axial
-        
         gradient.colors = [
             UIColor.clear.cgColor,
             UIColor.darkGray.withAlphaComponent(1).cgColor
         ]
-        
         gradient.startPoint = CGPoint(x: 1, y: 0)
         gradient.endPoint = CGPoint(x: 1, y: 1)
         gradient.frame = view.bounds
@@ -88,8 +98,8 @@ class RecipeDetailsViewController: BaseViewController {
         view.layer.addSublayer(gradient)
         
     }
+    
     private func printImage() {
-        
         guard let urlImage = URL(string: (selectedRecipe?.image)!) else {
             return
         }
@@ -102,8 +112,6 @@ class RecipeDetailsViewController: BaseViewController {
         }
         
     }
-   
-    
     
     private func saveSelectedRecipe(_ selectedRecipe: Recipe) {
         switch favoriteRecipeDataManager.save(recipeToSave: selectedRecipe) {
@@ -124,6 +132,7 @@ class RecipeDetailsViewController: BaseViewController {
         
         handleSelectedFavoriteState()
     }
+    
 }
 extension RecipeDetailsViewController: UITableViewDelegate {
     

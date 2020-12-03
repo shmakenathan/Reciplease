@@ -11,44 +11,36 @@ import CoreData
 
 class RecipesViewController: BaseViewController {
     
-    let favoriteRecipeDataManager = FavoriteRecipeDataManager()
+    // MARK: IBOutlet
+    
+    @IBOutlet weak var noFavoriteView: UIView!
+    @IBOutlet weak var recipesTableView: UITableView!
+    
+    // MARK: Properties - Public
     
     var shouldUseFavoriteRecipe = true
+    var recipeResult: RecipeResult?
     
-    var favoritedRecipesList: [RecipeSave] = [] {
+    // MARK: Properties - Private
+    
+    private let favoriteRecipeDataManager = FavoriteRecipeDataManager()
+  
+    private var favoritedRecipesList: [RecipeSave] = [] {
         didSet {
             recipesTableView.reloadData()
         }
     }
+    private var recipeConvert = RecipeSaveToRecipe()
     
-    @IBOutlet weak var recipesTableView: UITableView!
-    var recipeResult: RecipeResult?
-    var recipeConvert = RecipeSaveToRecipe()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         recipesTableView.delegate = self
         recipesTableView.dataSource = self
-        
-//
-//        if shouldUseFavoriteRecipe {
-//            switch favoriteRecipeDataManager.getAll() {
-//            case .failure:
-//                print("Should display alert")
-//            case .success(let favoritedRecipes):
-//                self.favoritedRecipesList = favoritedRecipes
-//                var hits : [Hit]
-//                for i in favoritedRecipes {
-//                 let recipe = recipeConvert.convert(recipeSave: i)
-//                    var hit = Hit(recipe: recipe)
-//                    hits.append(hit)
-//
-//                }
-//                recipesTableView.reloadData()
-//            }
-//        }
-       
     }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
@@ -59,9 +51,20 @@ class RecipesViewController: BaseViewController {
             case .failure(let error):
                 presentAlert(title: "Error", message: error.localizedDescription)
             }
+            ifHaveFavorite()
         }
         
         
+    }
+    
+    // MARK: Methods - Private
+    
+    private func ifHaveFavorite(){
+        if favoritedRecipesList.count > 0 {
+            noFavoriteView.isHidden = true
+        } else {
+            noFavoriteView.isHidden = false
+        }
     }
     
 }
@@ -69,48 +72,38 @@ class RecipesViewController: BaseViewController {
 extension RecipesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let selectedRowIndex = indexPath.row
-        
-        
         let selectedRecipe: Recipe
         
         if shouldUseFavoriteRecipe {
-            
             let recipeSave = favoritedRecipesList[indexPath.row]
             guard let convertedRecipe = recipeConvert.convert(recipeSave: recipeSave) else {
                 return
             }
             selectedRecipe = convertedRecipe
-            
         } else {
             guard let selectedRecipeFromResult = recipeResult?.hits[selectedRowIndex].recipe else { return }
             selectedRecipe = selectedRecipeFromResult
         }
-      
-        
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let recipeDetailsViewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else { return }
         recipeDetailsViewController.selectedRecipe = selectedRecipe
         
         self.navigationController?.pushViewController(recipeDetailsViewController, animated: true)
-        
-        
     }
-    
-    
 }
 
 
 extension RecipesViewController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shouldUseFavoriteRecipe {
             return favoritedRecipesList.count
         } else {
             return recipeResult?.hits.count ?? 0
         }
-       
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,7 +112,6 @@ extension RecipesViewController: UITableViewDataSource {
         }
         
         let cellRecipe: Recipe
-        
         if shouldUseFavoriteRecipe {
             let recipeSave = favoritedRecipesList[indexPath.row]
             guard let convertedRecipe = recipeConvert.convert(recipeSave: recipeSave) else {
@@ -133,10 +125,6 @@ extension RecipesViewController: UITableViewDataSource {
             
             cellRecipe = cellRecipeFromResult
         }
-        
-        
-        
-        
         cell.recipeTitleLabel.text = cellRecipe.label
         
         guard let urlImage = URL(string: cellRecipe.image) else {
@@ -148,7 +136,7 @@ extension RecipesViewController: UITableViewDataSource {
         } catch _ {
             print("error")
         }
-       
+        
         cell.ingredientList.text = "\(cellRecipe.totalTime) Minutes"
         
         let gradient = CAGradientLayer()
@@ -171,8 +159,6 @@ extension RecipesViewController: UITableViewDataSource {
         return cell
         
     }
-    
-    
     
     
 }

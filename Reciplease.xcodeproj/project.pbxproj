@@ -27,11 +27,12 @@
 		D86679BE252EF2CA005C56F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86679BC252EF2CA005C56F6 /* Main.storyboard */; };
 		D86679C3252EF2CD005C56F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D86679C2252EF2CD005C56F6 /* Assets.xcassets */; };
 		D86679C6252EF2CD005C56F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86679C4252EF2CD005C56F6 /* LaunchScreen.storyboard */; };
-		D86679D1252EF2CE005C56F6 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679D0252EF2CE005C56F6 /* RecipleaseTests.swift */; };
 		D86679DC252EF5AC005C56F6 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */; };
 		D86679DE252EF5BD005C56F6 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */; };
 		D8AC2B662566F88B00A0B4E8 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8AC2B642566F88B00A0B4E8 /* Reciplease.xcdatamodeld */; };
 		D8E67539256F3E9600B90574 /* RecipeSaveToRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E67538256F3E9600B90574 /* RecipeSaveToRecipe.swift */; };
+		D8E675412578A3A400B90574 /* RecipeResult.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E675402578A3A400B90574 /* RecipeResult.json */; };
+		D8E6754B2578A98B00B90574 /* RecipeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E6754A2578A98B00B90574 /* RecipeTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,13 +71,14 @@
 		D86679C5252EF2CD005C56F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D86679C7252EF2CD005C56F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D86679CC252EF2CE005C56F6 /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D86679D0252EF2CE005C56F6 /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		D86679D2252EF2CE005C56F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D86679DB252EF5AC005C56F6 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 		D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		D8AC2B652566F88B00A0B4E8 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		D8AC2B692567298800A0B4E8 /* RecipeSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSave.swift; sourceTree = "<group>"; };
 		D8E67538256F3E9600B90574 /* RecipeSaveToRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSaveToRecipe.swift; sourceTree = "<group>"; };
+		D8E675402578A3A400B90574 /* RecipeResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipeResult.json; sourceTree = "<group>"; };
+		D8E6754A2578A98B00B90574 /* RecipeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTestCase.swift; sourceTree = "<group>"; };
 		EEFE2E910BC1645AE6422502 /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,8 +201,9 @@
 		D86679CF252EF2CE005C56F6 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				D86679D0252EF2CE005C56F6 /* RecipleaseTests.swift */,
 				D86679D2252EF2CE005C56F6 /* Info.plist */,
+				D8E6754A2578A98B00B90574 /* RecipeTestCase.swift */,
+				D8E675402578A3A400B90574 /* RecipeResult.json */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 					};
 					D86679CB252EF2CE005C56F6 = {
 						CreatedOnToolsVersion = 11.7;
+						LastSwiftMigration = 1220;
 						TestTargetID = D86679B2252EF2CA005C56F6;
 					};
 				};
@@ -321,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E675412578A3A400B90574 /* RecipeResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D86679D1252EF2CE005C56F6 /* RecipleaseTests.swift in Sources */,
+				D8E6754B2578A98B00B90574 /* RecipeTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +620,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LV6V24R5F5;
 				INFOPLIST_FILE = RecipleaseTests/Info.plist;
@@ -626,6 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nathanchicha.RecipleaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reciplease.app/Reciplease";
@@ -638,6 +645,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LV6V24R5F5;
 				INFOPLIST_FILE = RecipleaseTests/Info.plist;

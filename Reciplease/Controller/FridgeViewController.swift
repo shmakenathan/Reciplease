@@ -12,12 +12,16 @@ import UIKit
 
 class FridgeViewController: BaseViewController {
     
+    // MARK: IBOutlet
     
     @IBOutlet weak var ingredientUiTextField: UITextField!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var searchTapButton: UIButton!
     
-    
+    // MARK: IBAction
+    @IBAction func tapToResignKeyboard(_ sender: UITapGestureRecognizer) {
+        ingredientUiTextField.resignFirstResponder()
+    }
     
     @IBAction func addTapButton(_ sender: Any) {
         guard let ingredient = ingredientUiTextField.text else { return }
@@ -28,6 +32,7 @@ class FridgeViewController: BaseViewController {
         }
         ingredientUiTextField.text = ""
     }
+    
     @IBAction func deleteTapButton(_ sender: Any) {
         ingredients = []
     }
@@ -43,6 +48,17 @@ class FridgeViewController: BaseViewController {
         )
     }
 
+    // MARK: Properties - Private
+    
+    private var ingredients: [String] = [] {
+        didSet {
+            ingredientsTableView.reloadData()
+        }
+    }
+    private let recipeNetworkManager = RecipeNetworkManager()
+    
+    // MARK: Methods - Private
+    
     private func handleError(error: Error) {
         guard let recipleaseError = error as? RecipleaseError else {
             presentAlert(title: "Error", message: "Unknown error")
@@ -67,34 +83,13 @@ class FridgeViewController: BaseViewController {
                     guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
                     recipesViewController.recipeResult = recipeResult
                     recipesViewController.shouldUseFavoriteRecipe = false
-                    
-                    
                     self.navigationController?.pushViewController(recipesViewController, animated: true)
                 }
             }
         }
     }
-    private let recipeNetworkManager = RecipeNetworkManager()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        searchTapButton.layer.cornerRadius = 10
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        ingredientUiTextField.addBottomBorderWithColor(color: .gray, width: 1)
-    }
-    
-    
-    
-    // datasource
-    
+  
     private func addIngredienttoList(ingredient: String) throws {
         if ingredient == "" {
             throw RecipleaseError.noIngredient
@@ -113,11 +108,22 @@ class FridgeViewController: BaseViewController {
     }
     
     
-    private var ingredients: [String] = [] {
-        didSet {
-            ingredientsTableView.reloadData()
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        searchTapButton.layer.cornerRadius = 10
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        ingredientUiTextField.addBottomBorderWithColor(color: .gray, width: 1)
+    }
+    
+   
 }
 
 

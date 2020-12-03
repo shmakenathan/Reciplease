@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="RecipeSave" representedClassName=".RecipeSave" syncable="YES" codeGenerationType="category">
         <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="ingredient" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="ingredient" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="time" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" customClassName="Int"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
