@@ -60,28 +60,7 @@ class CoreDataManager {
         }
     }
     
-//    func deleteFavoriteRecipe(withUrl url: String) throws {
-//        let request: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
-//        request.predicate = NSPredicate(format: "url == %@", url)
-//
-//        var favoriteRecipesToRemove: [FavoriteRecipe]
-//
-//        do {
-//            favoriteRecipesToRemove = try coreDataManager.contextProvider.fetch(request)
-//        } catch {
-//            throw error
-//        }
-//
-//        favoriteRecipesToRemove.forEach {
-//            coreDataManager.contextProvider.delete($0)
-//        }
-//        do {
-//            try coreDataManager.save()
-//        } catch {
-//            throw error
-//        }
-//    }
-//
+
     func save() -> Result<Void, CoreDataManagerError> {
         let saveResult = contextProvider.save()
         

@@ -33,6 +33,12 @@
 		D8E67539256F3E9600B90574 /* RecipeSaveToRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E67538256F3E9600B90574 /* RecipeSaveToRecipe.swift */; };
 		D8E675412578A3A400B90574 /* RecipeResult.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E675402578A3A400B90574 /* RecipeResult.json */; };
 		D8E6754B2578A98B00B90574 /* RecipeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E6754A2578A98B00B90574 /* RecipeTestCase.swift */; };
+		D8E6754F2582BD6000B90574 /* NetworkManagerMockRecipeSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E6754E2582BD6000B90574 /* NetworkManagerMockRecipeSuccess.swift */; };
+		D8E6755A2582BE6400B90574 /* NetworkManagerMockRecipeNoSuccessCouldNotDecodeJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E675522582BE5500B90574 /* NetworkManagerMockRecipeNoSuccessCouldNotDecodeJson.swift */; };
+		D8E675602582CB9200B90574 /* NetworkManagerMockRecipeNoSuccessInvalideResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E6755F2582CB9200B90574 /* NetworkManagerMockRecipeNoSuccessInvalideResponse.swift */; };
+		D8E675642582CEAF00B90574 /* NetworkManagerMockRecipeNoSuccessNoDataReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E675632582CEAF00B90574 /* NetworkManagerMockRecipeNoSuccessNoDataReceived.swift */; };
+		D8E675682582D03400B90574 /* RecipeUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E675672582D03400B90574 /* RecipeUrlProvider.swift */; };
+		D8E6756C2582D1D900B90574 /* RecipeUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E6756B2582D1D800B90574 /* RecipeUrlProviderMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +85,12 @@
 		D8E67538256F3E9600B90574 /* RecipeSaveToRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSaveToRecipe.swift; sourceTree = "<group>"; };
 		D8E675402578A3A400B90574 /* RecipeResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipeResult.json; sourceTree = "<group>"; };
 		D8E6754A2578A98B00B90574 /* RecipeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTestCase.swift; sourceTree = "<group>"; };
+		D8E6754E2582BD6000B90574 /* NetworkManagerMockRecipeSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMockRecipeSuccess.swift; sourceTree = "<group>"; };
+		D8E675522582BE5500B90574 /* NetworkManagerMockRecipeNoSuccessCouldNotDecodeJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMockRecipeNoSuccessCouldNotDecodeJson.swift; sourceTree = "<group>"; };
+		D8E6755F2582CB9200B90574 /* NetworkManagerMockRecipeNoSuccessInvalideResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMockRecipeNoSuccessInvalideResponse.swift; sourceTree = "<group>"; };
+		D8E675632582CEAF00B90574 /* NetworkManagerMockRecipeNoSuccessNoDataReceived.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMockRecipeNoSuccessNoDataReceived.swift; sourceTree = "<group>"; };
+		D8E675672582D03400B90574 /* RecipeUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUrlProvider.swift; sourceTree = "<group>"; };
+		D8E6756B2582D1D800B90574 /* RecipeUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUrlProviderMock.swift; sourceTree = "<group>"; };
 		EEFE2E910BC1645AE6422502 /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +170,7 @@
 			children = (
 				D830FB2A25411180006214ED /* UrlSessionNetworkManager.swift */,
 				D830FB322541189B006214ED /* RecipeNetworkManager.swift */,
+				D8E675672582D03400B90574 /* RecipeUrlProvider.swift */,
 				D830FB2E254111C0006214ED /* NetworkManagerError.swift */,
 				D8AC2B632566F87200A0B4E8 /* CoreData */,
 			);
@@ -202,7 +215,12 @@
 			isa = PBXGroup;
 			children = (
 				D86679D2252EF2CE005C56F6 /* Info.plist */,
+				D8E675522582BE5500B90574 /* NetworkManagerMockRecipeNoSuccessCouldNotDecodeJson.swift */,
+				D8E675632582CEAF00B90574 /* NetworkManagerMockRecipeNoSuccessNoDataReceived.swift */,
+				D8E6755F2582CB9200B90574 /* NetworkManagerMockRecipeNoSuccessInvalideResponse.swift */,
 				D8E6754A2578A98B00B90574 /* RecipeTestCase.swift */,
+				D8E6756B2582D1D800B90574 /* RecipeUrlProviderMock.swift */,
+				D8E6754E2582BD6000B90574 /* NetworkManagerMockRecipeSuccess.swift */,
 				D8E675402578A3A400B90574 /* RecipeResult.json */,
 			);
 			path = RecipleaseTests;
@@ -400,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E675682582D03400B90574 /* RecipeUrlProvider.swift in Sources */,
 				D85542A5254A32A4002BF3AB /* BaseViewController.swift in Sources */,
 				D830FB262541109D006214ED /* RecipeResult.swift in Sources */,
 				D830FB2F254111C0006214ED /* NetworkManagerError.swift in Sources */,
@@ -426,7 +445,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E6756C2582D1D900B90574 /* RecipeUrlProviderMock.swift in Sources */,
 				D8E6754B2578A98B00B90574 /* RecipeTestCase.swift in Sources */,
+				D8E675642582CEAF00B90574 /* NetworkManagerMockRecipeNoSuccessNoDataReceived.swift in Sources */,
+				D8E6755A2582BE6400B90574 /* NetworkManagerMockRecipeNoSuccessCouldNotDecodeJson.swift in Sources */,
+				D8E675602582CB9200B90574 /* NetworkManagerMockRecipeNoSuccessInvalideResponse.swift in Sources */,
+				D8E6754F2582BD6000B90574 /* NetworkManagerMockRecipeSuccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

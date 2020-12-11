@@ -17,39 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hmZ-E8-6XV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hmZ-E8-6XV">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" rowHeight="160" translatesAutoresizingMaskIntoConstraints="NO" id="QZh-gu-rTx" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" translatesAutoresizingMaskIntoConstraints="NO" id="QZh-gu-rTx" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QZh-gu-rTx" id="5YI-EA-ULN">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QZh-gu-rTx" translatesAutoresizingMaskIntoConstraints="NO" id="5YI-EA-ULN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
-                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-K0-HJr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casserole-espagnole-d1d4e0f7" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-HF-FFg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
-                                                        </imageView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="via-0B-VBT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
-                                                        </view>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casserole-espagnole-d1d4e0f7" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-HF-FFg"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="via-0B-VBT"/>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l2K-lv-WJI">
-                                                            <rect key="frame" x="10" y="107.33333333333333" width="394" height="52.666666666666671"/>
+                                                            <rect key="frame" x="10" y="-52.666666666666664" width="0.0" height="52.666666666666664"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recette 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZw-Gs-hO8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="27.666666666666668"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="27.666666666666668"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pomme de terre Rissolé" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCd-ce-yTB">
-                                                                    <rect key="frame" x="0.0" y="27.666666666666671" width="394" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="27.666666666666664" width="0.0" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="cUy-a0-bZ1"/>
                                                                     </constraints>
@@ -76,6 +70,7 @@
                                                         <constraint firstItem="l2K-lv-WJI" firstAttribute="leading" secondItem="hy9-K0-HJr" secondAttribute="leading" constant="10" id="EXQ-J4-ShT"/>
                                                         <constraint firstAttribute="trailing" secondItem="l2K-lv-WJI" secondAttribute="trailing" constant="10" id="F4a-rp-tFR"/>
                                                         <constraint firstItem="Qh2-HF-FFg" firstAttribute="leading" secondItem="hy9-K0-HJr" secondAttribute="leading" id="JOg-eo-ToR"/>
+                                                        <constraint firstAttribute="height" constant="160" id="QTC-5A-lWg"/>
                                                         <constraint firstItem="via-0B-VBT" firstAttribute="leading" secondItem="hy9-K0-HJr" secondAttribute="leading" id="QhV-he-IIS"/>
                                                         <constraint firstItem="Qh2-HF-FFg" firstAttribute="top" secondItem="hy9-K0-HJr" secondAttribute="top" id="Y1s-9A-axU"/>
                                                         <constraint firstAttribute="trailing" secondItem="Qh2-HF-FFg" secondAttribute="trailing" id="Yzv-dA-IeL"/>
@@ -160,16 +155,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeY-NC-41o">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="280"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-H4-qst">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="280"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZR7-4A-PYa">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="280"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pomme de terre" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Q-FH-Fzl">
-                                        <rect key="frame" x="0.0" y="245" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="225" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="oKG-vK-uac"/>
                                         </constraints>
@@ -185,7 +180,7 @@
                                     <constraint firstItem="uq3-H4-qst" firstAttribute="leading" secondItem="JeY-NC-41o" secondAttribute="leading" id="DkT-pt-wsh"/>
                                     <constraint firstAttribute="trailing" secondItem="uq3-H4-qst" secondAttribute="trailing" id="Exz-nv-hQh"/>
                                     <constraint firstAttribute="trailing" secondItem="ZR7-4A-PYa" secondAttribute="trailing" id="ZEY-d5-cQU"/>
-                                    <constraint firstAttribute="height" constant="300" id="b81-g4-pOF"/>
+                                    <constraint firstAttribute="height" constant="280" id="b81-g4-pOF"/>
                                     <constraint firstAttribute="bottom" secondItem="uq3-H4-qst" secondAttribute="bottom" id="eHl-n3-L0b"/>
                                     <constraint firstAttribute="bottom" secondItem="G6Q-FH-Fzl" secondAttribute="bottom" constant="5" id="fS1-4u-ido"/>
                                     <constraint firstAttribute="bottom" secondItem="ZR7-4A-PYa" secondAttribute="bottom" id="lCW-og-g6c"/>
@@ -194,7 +189,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjr-OF-IXo">
-                                <rect key="frame" x="0.0" y="310" width="414" height="374"/>
+                                <rect key="frame" x="0.0" y="290" width="414" height="394"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACX-fQ-sz4">
                                         <rect key="frame" x="15" y="0.0" width="384" height="50"/>
@@ -206,7 +201,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z2T-W9-9lT">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="324"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="344"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>

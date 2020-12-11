@@ -9,12 +9,21 @@
 import Foundation
 import Alamofire
 
+
+
+
+
+
+
 protocol NetworkManagerProtocol {
     func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void)
 }
 
 
 class AlamofireNetworkManager: NetworkManagerProtocol {
+    
+    
+    
     func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void) {
         
 
