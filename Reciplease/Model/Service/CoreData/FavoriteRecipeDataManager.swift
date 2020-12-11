@@ -12,11 +12,11 @@ import CoreData
 
 class FavoriteRecipeDataManager {
     
-    init(coreDataManager: CoreDataManager = CoreDataManager()) {
+    init(coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.coreDataManager = coreDataManager
     }
     
-    private let coreDataManager: CoreDataManager
+    private let coreDataManager: CoreDataManagerProtocol
     
     
     func getAll() -> Result<[RecipeSave], CoreDataManagerError> {
@@ -26,7 +26,7 @@ class FavoriteRecipeDataManager {
     func save(recipeToSave: Recipe) -> Result<Void, CoreDataManagerError> {
         
         let recipeObjectToSave = coreDataManager.getObject(objectType: RecipeSave.self)
-        
+    
         
         recipeObjectToSave.image = recipeToSave.image
         recipeObjectToSave.title = recipeToSave.label

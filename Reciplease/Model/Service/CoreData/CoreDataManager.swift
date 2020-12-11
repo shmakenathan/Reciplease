@@ -16,12 +16,63 @@ enum CoreDataManagerError: Error {
 }
 
 
-class CoreDataManager {
+protocol CoreDataManagerProtocol {
+    func getAllElements<T: NSFetchRequestResult>(resultType: T.Type, predicate: NSPredicate?) -> Result<[T], CoreDataManagerError>
+    
+    func removeAllElements<T: NSManagedObject>(resultType: T.Type, predicate: NSPredicate?) -> Result<Void, CoreDataManagerError>
+    
+    func save() -> Result<Void, CoreDataManagerError>
+    
+    func getObject<T: NSManagedObject>(objectType: T.Type) -> T
+}
+
+
+
+class CoreDataManagerMock: CoreDataManagerProtocol {
+    func getAllElements<T>(resultType: T.Type, predicate: NSPredicate?) -> Result<[T], CoreDataManagerError> where T : NSFetchRequestResult {
+        
+        let recipeTest = RecipeSave()
+        
+//        recipeTest.title = "Omellette"
+//        recipeTest.ingredient = ["Jambon", "fromage", "Oeuf"]
+        
+        
+        let recipes = [
+            recipeTest
+        ] as! [T]
+        
+        return .success(recipes)
+    }
+    
+    func removeAllElements<T>(resultType: T.Type, predicate: NSPredicate?) -> Result<Void, CoreDataManagerError> where T : NSManagedObject {
+        return .success(())
+    }
+    
+    func save() -> Result<Void, CoreDataManagerError> {
+        return .success(())
+    }
+    
+    func getObject<T>(objectType: T.Type) -> T where T : NSManagedObject {
+        let recipeTest = RecipeSave()
+        
+//        recipeTest.title = "Omellette"
+//        recipeTest.ingredient = ["Jambon", "fromage", "Oeuf"]
+        
+        return recipeTest as! T
+    }
+    
+    
+}
+
+
+
+
+class CoreDataManager: CoreDataManagerProtocol {
     init(contextProvider: ContextProvider = ContextProvider()) {
         self.contextProvider = contextProvider
     }
     
-    let contextProvider: ContextProvider
+
     
     
     
@@ -76,6 +127,13 @@ class CoreDataManager {
     func getObject<T: NSManagedObject>(objectType: T.Type) -> T {
         NSEntityDescription.insertNewObject(forEntityName: "\(T.self)", into: contextProvider.context) as! T
     }
+
+    
+    
+    
+    
+    
+    private let contextProvider: ContextProvider
     
     
 }
