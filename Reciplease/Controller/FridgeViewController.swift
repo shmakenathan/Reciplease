@@ -14,61 +14,64 @@ class FridgeViewController: BaseViewController {
     
     // MARK: IBOutlet
     
-    @IBOutlet weak var ingredientUiTextField: UITextField!
+    @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var searchTapButton: UIButton!
     
     // MARK: IBAction
     @IBAction func tapToResignKeyboard(_ sender: UITapGestureRecognizer) {
-        ingredientUiTextField.resignFirstResponder()
+        ingredientTextField.resignFirstResponder()
     }
     
     @IBAction func addTapButton(_ sender: Any) {
-        guard let ingredient = ingredientUiTextField.text else { return }
-        do {
-            try addIngredienttoList(ingredient: ingredient)
-        } catch {
-            handleError(error: error)
+        guard let ingredient = ingredientTextField.text else { return }
+
+        switch fridgeService.addIngredient(ingredient) {
+        case .success(): break
+        case .failure(let error): handleError(error: error)
         }
-        ingredientUiTextField.text = ""
+        ingredientTextField.text = ""
     }
     
     @IBAction func deleteTapButton(_ sender: Any) {
-        ingredients = []
+        fridgeService.clearIngredients()
     }
     
     @IBAction func searchTapButton(_ sender: Any) {
-        if ingredients.isEmpty {
+        searchTapButton.isEnabled = false
+        searchTapButton.alpha = 0.6
+        
+        if fridgeService.ingredients.isEmpty {
+            searchTapButton.isEnabled = true
+            searchTapButton.alpha = 1.0
             presentAlert(title: "Error", message: RecipleaseError.noIngredient.message)
         }
         self.changeLoadingIndicatorVisibility(shouldShow: true)
         recipeNetworkManager.fetchRecipe(
-            ingredients: ingredients,
+            ingredients: fridgeService.ingredients,
             completionHandler: handleRecipeResult(result:)
         )
     }
+    
+    
+    private let fridgeService = FridgeService()
 
     // MARK: Properties - Private
     
-    private var ingredients: [String] = [] {
-        didSet {
-            ingredientsTableView.reloadData()
-        }
-    }
+
     private let recipeNetworkManager = RecipeNetworkManager()
     
     // MARK: Methods - Private
     
-    private func handleError(error: Error) {
-        guard let recipleaseError = error as? RecipleaseError else {
-            presentAlert(title: "Error", message: "Unknown error")
-            return
-        }
-        presentAlert(title: "Error", message: recipleaseError.message)
+    private func handleError(error: FridgeServiceError) {
+        presentAlert(title: "Error", message: error.message)
     }
     
     private func handleRecipeResult(result: Result<RecipeResult, NetworkManagerError>) {
         DispatchQueue.main.async {
+            self.searchTapButton.isEnabled = true
+            self.searchTapButton.alpha = 1.0
+            
             switch result {
             case .failure(let erreur):
                 self.changeLoadingIndicatorVisibility(shouldShow: false)
@@ -89,29 +92,16 @@ class FridgeViewController: BaseViewController {
         }
     }
     
-  
-    private func addIngredienttoList(ingredient: String) throws {
-        if ingredient == "" {
-            throw RecipleaseError.noIngredient
-        } else {
-            let noWhiteIngredient = ingredient.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            let ingredientsContainsInputIngredient = ingredients.contains(
-                where: { $0.caseInsensitiveCompare(noWhiteIngredient) == .orderedSame }
-            )
-            
-            guard !ingredientsContainsInputIngredient else {
-                throw RecipleaseError.ingredientAlreadyPresent
-            }
-            ingredients.append(ingredient)
-        }
-    }
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchTapButton.layer.cornerRadius = 10
+        
+        fridgeService.delegate = self
+        
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
         
@@ -120,12 +110,18 @@ class FridgeViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        ingredientUiTextField.addBottomBorderWithColor(color: .gray, width: 1)
+        ingredientTextField.addBottomBorderWithColor(color: .gray, width: 1)
     }
     
    
 }
 
+extension FridgeViewController: FridgeServiceDelegate {
+    func didUpdateIngredients() {
+        ingredientsTableView.reloadData()
+    }
+    
+}
 
 
 extension FridgeViewController: UITableViewDelegate {
@@ -136,7 +132,7 @@ extension FridgeViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ingredients.count
+        fridgeService.ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,7 +141,7 @@ extension FridgeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.textLabel?.text = "- "+ingredients[indexPath.row].capitalized
+        cell.textLabel?.text = "- "+fridgeService.ingredients[indexPath.row].capitalized
         
         return cell
     }
