@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum RecipeNetworkManagerError: Error {
+    case failedToGetRecipes
+    case failedToCreateUrl
+}
 
 class RecipeNetworkManager {
     
@@ -19,14 +23,26 @@ class RecipeNetworkManager {
     
     private let networkManager: NetworkManagerProtocol
     private let recipeUrlProvider: RecipeUrlProvider
-    func fetchRecipe(ingredients: [String], completionHandler: @escaping (Result<RecipeResult, NetworkManagerError>) -> Void) {
+    func fetchRecipe(
+        ingredients: [String],
+        completionHandler: @escaping (Result<[Recipe], RecipeNetworkManagerError>) -> Void
+    ) {
         
         guard let url = recipeUrlProvider.createUrl(ingredients: ingredients) else {
-            completionHandler(.failure(.unknownErrorOccured))
+            completionHandler(.failure(.failedToCreateUrl))
             return
         }
         
-        networkManager.fetchResult(url: url, completionHandler: completionHandler)
+        networkManager.fetchResult(url: url) { (result: Result<RecipeResult, NetworkManagerError>)  in
+            switch result {
+            case .failure:
+                completionHandler(.failure(.failedToGetRecipes))
+            case .success(let recipeResponse):
+                let recipes = recipeResponse.hits.map { $0.recipe }
+                completionHandler(.success(recipes))
+            }
+            
+        }
     }
     
 

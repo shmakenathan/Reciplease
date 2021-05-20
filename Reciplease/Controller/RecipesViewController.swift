@@ -19,7 +19,7 @@ class RecipesViewController: BaseViewController {
     // MARK: Properties - Public
     
     var shouldUseFavoriteRecipe = true
-    var recipeResult: RecipeResult?
+    var recipes: [Recipe] = []
     
     // MARK: Properties - Private
     
@@ -83,8 +83,7 @@ extension RecipesViewController: UITableViewDelegate {
             }
             selectedRecipe = convertedRecipe
         } else {
-            guard let selectedRecipeFromResult = recipeResult?.hits[selectedRowIndex].recipe else { return }
-            selectedRecipe = selectedRecipeFromResult
+            selectedRecipe = recipes[selectedRowIndex]
         }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let recipeDetailsViewController = storyboard.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else { return }
@@ -101,7 +100,7 @@ extension RecipesViewController: UITableViewDataSource {
         if shouldUseFavoriteRecipe {
             return favoritedRecipesList.count
         } else {
-            return recipeResult?.hits.count ?? 0
+            return recipes.count
         }
         
     }
@@ -119,11 +118,8 @@ extension RecipesViewController: UITableViewDataSource {
             }
             cellRecipe = convertedRecipe
         } else {
-            guard let cellRecipeFromResult = recipeResult?.hits[indexPath.row].recipe else {
-                return UITableViewCell()
-            }
             
-            cellRecipe = cellRecipeFromResult
+            cellRecipe = recipes[indexPath.row]
         }
         cell.recipeTitleLabel.text = cellRecipe.label
         

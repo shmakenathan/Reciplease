@@ -47,10 +47,7 @@ class FridgeViewController: BaseViewController {
             presentAlert(title: "Error", message: RecipleaseError.noIngredient.message)
         }
         self.changeLoadingIndicatorVisibility(shouldShow: true)
-        recipeNetworkManager.fetchRecipe(
-            ingredients: fridgeService.ingredients,
-            completionHandler: handleRecipeResult(result:)
-        )
+        fridgeService.searchRecipes(completionHandler: handleRecipeResult)
     }
     
     
@@ -67,30 +64,6 @@ class FridgeViewController: BaseViewController {
         presentAlert(title: "Error", message: error.message)
     }
     
-    private func handleRecipeResult(result: Result<RecipeResult, NetworkManagerError>) {
-        DispatchQueue.main.async {
-            self.searchTapButton.isEnabled = true
-            self.searchTapButton.alpha = 1.0
-            
-            switch result {
-            case .failure(let erreur):
-                self.changeLoadingIndicatorVisibility(shouldShow: false)
-                self.presentAlert(title: "Error", message: erreur.message)
-                
-            case .success(let recipeResult):
-                self.changeLoadingIndicatorVisibility(shouldShow: false)
-                if recipeResult.count == 0 {
-                    self.presentAlert(title: "Error", message: RecipleaseError.noResults.message)
-                } else {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
-                    recipesViewController.recipeResult = recipeResult
-                    recipesViewController.shouldUseFavoriteRecipe = false
-                    self.navigationController?.pushViewController(recipesViewController, animated: true)
-                }
-            }
-        }
-    }
     
 
     
@@ -113,13 +86,41 @@ class FridgeViewController: BaseViewController {
         ingredientTextField.addBottomBorderWithColor(color: .gray, width: 1)
     }
     
+    
+    func handleRecipeResult(result: Result<[Recipe], FridgeServiceError>) {
+        DispatchQueue.main.async {
+            self.searchTapButton.isEnabled = true
+            self.searchTapButton.alpha = 1.0
+            
+            switch result {
+            case .failure(let erreur):
+                self.changeLoadingIndicatorVisibility(shouldShow: false)
+                self.presentAlert(title: "Error", message: erreur.message)
+                
+            case .success(let recipes):
+                self.changeLoadingIndicatorVisibility(shouldShow: false)
+                if recipes.count == 0 {
+                    self.presentAlert(title: "Error", message: RecipleaseError.noResults.message)
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
+                    recipesViewController.recipes = recipes
+                    recipesViewController.shouldUseFavoriteRecipe = false
+                    self.navigationController?.pushViewController(recipesViewController, animated: true)
+                }
+            }
+        }
+    }
    
 }
 
 extension FridgeViewController: FridgeServiceDelegate {
+    
+    
     func didUpdateIngredients() {
         ingredientsTableView.reloadData()
     }
+    
     
 }
 

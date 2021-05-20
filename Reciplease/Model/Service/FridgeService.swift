@@ -3,12 +3,16 @@ import Foundation
 
 enum FridgeServiceError: Error {
     case failedAddIngredientIngredientIsEmpty
-    case failedToAddIngrdientAlreadyAdded
+    case failedToAddIngredientAlreadyAdded
+    case failedToAddIngredientIngredientContainsSpecialCharacter
+    case failedToSearchRecipes
     
     var message: String {
         switch self {
         case .failedAddIngredientIngredientIsEmpty: return "failedAddIngredientIngredientIsEmpty"
-        case .failedToAddIngrdientAlreadyAdded: return "failedToAddIngrdientAlreadyAdded"
+        case .failedToAddIngredientAlreadyAdded: return "failedToAddIngrdientAlreadyAdded"
+        case .failedToAddIngredientIngredientContainsSpecialCharacter: return "failedToAddIngredientIngredientContainsSpecialCharacter"
+        case .failedToSearchRecipes: return "failedToSearchRecipes"
         }
     }
 }
@@ -19,36 +23,34 @@ protocol FridgeServiceDelegate: class {
 
 class FridgeService {
     weak var delegate: FridgeServiceDelegate?
-    
+    var recipeNetworkManager =  RecipeNetworkManager()
     var ingredients: [String] = [] {
         didSet {
             delegate?.didUpdateIngredients()
         }
     }
     
-    func checkIfOnlyWhitespace(_ ingredient: String) -> Bool {
-        for i in ingredient {
-            if i != " " {
-                return true
-            }
-        }
-        return false
-    }
+    
+    
+    
     func addIngredient(_ ingredient: String) -> Result<Void, FridgeServiceError> {
         
+        let trimmedIngredient = ingredient.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
-        guard !ingredient.isEmpty else {
+        guard !trimmedIngredient.isEmpty else {
             return .failure(.failedAddIngredientIngredientIsEmpty)
         }
-        guard checkIfOnlyWhitespace(ingredient) else {
-            return .failure(.failedAddIngredientIngredientIsEmpty)
-        }
-        let  newIngredient = ingredient.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !ingredients.contains(newIngredient) else {
-            return .failure(.failedToAddIngrdientAlreadyAdded)
+        
+        guard !ingredients.contains(trimmedIngredient) else {
+            return .failure(.failedToAddIngredientAlreadyAdded)
         }
         
-        ingredients.append(newIngredient)
+        guard getIsOnlyValidCharacterUsed(in: trimmedIngredient) else {
+            return .failure(.failedToAddIngredientIngredientContainsSpecialCharacter)
+        }
+        
+        ingredients.append(trimmedIngredient)
+        
         return .success(())
     }
     
@@ -56,7 +58,32 @@ class FridgeService {
         ingredients.removeAll()
     }
     
-    func searchRecipes() {
+    func searchRecipes(completionHandler: @escaping (Result<[Recipe], FridgeServiceError>) -> Void) {
+   
+        recipeNetworkManager.fetchRecipe(
+            ingredients: ingredients,
+            completionHandler: { result in
+                switch result {
+                case .failure:
+                    completionHandler(.failure(.failedToSearchRecipes))
+                case .success(let recipes):
+                    completionHandler(.success(recipes))
+                }
+                
+            }
+        )
+    }
+    
+    private func getIsOnlyValidCharacterUsed(in ingredient: String) -> Bool {
+        let commonCharacterRegex = #"^[a-zA-Z0-9äöüÄÖÜ]*$"#
         
+        let result = ingredient.range(
+            of: commonCharacterRegex,
+            options: .regularExpression
+        )
+        
+        let validIngredient = result != nil
+        
+        return validIngredient
     }
 }
