@@ -22,8 +22,13 @@ protocol FridgeServiceDelegate: class {
 }
 
 class FridgeService {
+    
+    init(recipeNetworkManager: RecipeNetworkManagerProtocol = RecipeNetworkManager()) {
+        self.recipeNetworkManager = recipeNetworkManager
+    }
+    
     weak var delegate: FridgeServiceDelegate?
-    var recipeNetworkManager =  RecipeNetworkManager()
+    let recipeNetworkManager: RecipeNetworkManagerProtocol
     var ingredients: [String] = [] {
         didSet {
             delegate?.didUpdateIngredients()

@@ -8,12 +8,42 @@
 
 import Foundation
 
-enum RecipeNetworkManagerError: Error {
+enum RecipeNetworkManagerError: Error, LocalizedError {
     case failedToGetRecipes
     case failedToCreateUrl
+    
+    var errorDescription: String? {
+        switch self {
+        case .failedToCreateUrl: return "Failed to create url"
+        case .failedToGetRecipes: return "Failed to get recipes"
+        }
+    }
 }
 
-class RecipeNetworkManager {
+
+protocol RecipeNetworkManagerProtocol {
+    func fetchRecipe(
+        ingredients: [String],
+        completionHandler: @escaping (Result<[Recipe], RecipeNetworkManagerError>) -> Void
+    )
+}
+
+class RecipeNetworkManagerMock: RecipeNetworkManagerProtocol {
+    
+    init(result: Result<[Recipe], RecipeNetworkManagerError>) {
+        self.result = result
+    }
+    
+    let result: Result<[Recipe], RecipeNetworkManagerError>
+    
+    func fetchRecipe(ingredients: [String], completionHandler: @escaping (Result<[Recipe], RecipeNetworkManagerError>) -> Void) {
+        completionHandler(result)
+    }
+    
+    
+}
+
+class RecipeNetworkManager: RecipeNetworkManagerProtocol {
     
     init(networkManager: NetworkManagerProtocol = AlamofireNetworkManager(),
          recipeUrlProvider: RecipeUrlProvider = RecipeUrlProvider()) {
@@ -33,7 +63,7 @@ class RecipeNetworkManager {
             return
         }
         
-        networkManager.fetchResult(url: url) { (result: Result<RecipeResult, NetworkManagerError>)  in
+        networkManager.fetchResult(url: url) { (result: Result<RecipeSearchResponse, NetworkManagerError>)  in
             switch result {
             case .failure:
                 completionHandler(.failure(.failedToGetRecipes))

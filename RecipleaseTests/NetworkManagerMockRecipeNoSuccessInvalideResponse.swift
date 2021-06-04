@@ -10,7 +10,7 @@ import Foundation
 @testable import Reciplease
 class NetworkManagerMockRecipeNoSuccessInvalideResponse: NetworkManagerProtocol {
     func fetchResult<T>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void) where T : Decodable {
-        completionHandler(.failure(.invalidResponseStatusCode))
+        completionHandler(.failure(.unknownErrorOccured))
         
     }
     

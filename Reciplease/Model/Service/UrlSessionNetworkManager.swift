@@ -11,10 +11,6 @@ import Alamofire
 
 
 
-
-
-
-
 protocol NetworkManagerProtocol {
     func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void)
 }
@@ -22,73 +18,27 @@ protocol NetworkManagerProtocol {
 
 class AlamofireNetworkManager: NetworkManagerProtocol {
     
+    init(alamofireSession: AlamofireSessionProtocol = AlamofireSession()) {
+        self.alamofireSession = alamofireSession
+    }
     
+    private let alamofireSession: AlamofireSessionProtocol
     
     func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void) {
         
 
         let urlRequest = URLRequest(url: url)
         
-        AF.request(urlRequest)
-            .validate()
-            .responseDecodable(of: T.self) { response in
-                
-                guard response.error == nil else {
-                    completionHandler(.failure(.unknownErrorOccured))
-                    return
-                }
-                
-                guard let result = response.value else {
-                    completionHandler(.failure(.noData))
-                    return
-                }
-                
-                completionHandler(.success(result))
-                return
-            }
-        
-        
-    }
-}
-
-class UrlSessionNetworkManager: NetworkManagerProtocol {
-    init(session: URLSession = URLSession.shared) {
-        self.session = session
-    }
-    
-    let session: URLSession
-    
-    
-    
-    func fetchResult<T: Decodable>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void) {
-        
-        
-    
-        let task = session.dataTask(with: url) { (data, response, error) in
-            guard error == nil else {
+        alamofireSession.fetch(urlRequest: urlRequest) { (response: DataResponse<T, AFError>) in
+            
+            switch response.result {
+            case .failure:
                 completionHandler(.failure(.unknownErrorOccured))
                 return
-            }
-            
-            guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
-                completionHandler(.failure(.invalidResponseStatusCode))
+            case .success(let response):
+                completionHandler(.success(response))
                 return
             }
-            
-            guard let data = data else {
-                completionHandler(.failure(.noData))
-                return
-            }
-            
-            guard let result = try? JSONDecoder().decode(T.self, from: data) else {
-                completionHandler(.failure(.couldNotDecodeJson))
-                return
-            }
-            
-            completionHandler(.success(result))
-            
         }
-        
-        task.resume()
     }
 }

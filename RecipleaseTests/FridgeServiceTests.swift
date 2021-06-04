@@ -144,5 +144,42 @@ class FridgeServiceTests: XCTestCase {
     }
     
 
+    
+    func test_asdadsads() {
+        let recipeNetworkManagerMock = RecipeNetworkManagerMock(result: .success([
+            Recipe(label: "Pizza", image: "", url: "", ingredientLines: [], totalTime: 3)
+        ]))
+        let fridgeService = FridgeService(recipeNetworkManager: recipeNetworkManagerMock)
+        
+        
+        
+        fridgeService.searchRecipes { (result) in
+            switch result {
+            case .failure:
+                XCTFail()
+            case .success(let recipes):
+                XCTAssertEqual(recipes.first!.label, "Pizza")
+            }
+        }
+        
+    }
+    
+    
+    func test_asdadsadssddsas() {
+        let recipeNetworkManagerMock = RecipeNetworkManagerMock(result: .failure(.failedToGetRecipes))
+        let fridgeService = FridgeService(recipeNetworkManager: recipeNetworkManagerMock)
+        
+        
+        fridgeService.searchRecipes { (result) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(error, .failedToSearchRecipes)
+                
+            case .success:
+                XCTFail()
+            }
+        }
+        
+    }
    
 }
