@@ -30,7 +30,7 @@ class RecipesViewController: BaseViewController {
             recipesTableView.reloadData()
         }
     }
-    private var recipeConvert = RecipeSaveToRecipe()
+    private var recipeConvert = RecipeSaveToRecipeConverter()
     
     
     
@@ -59,7 +59,7 @@ class RecipesViewController: BaseViewController {
     
     // MARK: Methods - Private
     
-    private func ifHaveFavorite(){
+    private func ifHaveFavorite() {
         if favoritedRecipesList.count > 0 {
             noFavoriteView.isHidden = true
         } else {
@@ -134,21 +134,7 @@ extension RecipesViewController: UITableViewDataSource {
         }
         
         cell.ingredientList.text = "\(cellRecipe.totalTime) Minutes"
-        
-        let gradient = CAGradientLayer()
-        gradient.type = .axial
-        
-        gradient.colors = [
-            UIColor.clear.cgColor,
-            UIColor.black.withAlphaComponent(0.8).cgColor
-        ]
-        
-        gradient.startPoint = CGPoint(x: 1, y: 0)
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.frame = cell.bounds
-        
-        gradient.locations = [0.2, 1]
-        cell.gradientView.layer.addSublayer(gradient)
+    
         
         
         

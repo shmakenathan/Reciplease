@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class RecipeSaveToRecipe {
+class RecipeSaveToRecipeConverter {
     
     func convert(recipeSave: RecipeSave) -> Recipe? {
         
