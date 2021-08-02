@@ -17,7 +17,7 @@ enum FridgeServiceError: Error {
     }
 }
 
-protocol FridgeServiceDelegate: class {
+protocol FridgeServiceDelegate: AnyObject {
     func didUpdateIngredients()
 }
 
