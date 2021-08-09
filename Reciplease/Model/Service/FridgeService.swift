@@ -1,22 +1,5 @@
 import Foundation
 
-
-enum FridgeServiceError: Error {
-    case failedAddIngredientIngredientIsEmpty
-    case failedToAddIngredientAlreadyAdded
-    case failedToAddIngredientIngredientContainsSpecialCharacter
-    case failedToSearchRecipes
-    
-    var message: String {
-        switch self {
-        case .failedAddIngredientIngredientIsEmpty: return "failedAddIngredientIngredientIsEmpty"
-        case .failedToAddIngredientAlreadyAdded: return "failedToAddIngrdientAlreadyAdded"
-        case .failedToAddIngredientIngredientContainsSpecialCharacter: return "failedToAddIngredientIngredientContainsSpecialCharacter"
-        case .failedToSearchRecipes: return "failedToSearchRecipes"
-        }
-    }
-}
-
 protocol FridgeServiceDelegate: AnyObject {
     func didUpdateIngredients()
 }

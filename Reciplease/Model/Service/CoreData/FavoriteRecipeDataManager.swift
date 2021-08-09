@@ -22,18 +22,17 @@ class FavoriteRecipeDataManager {
     func getAll() -> Result<[RecipeSave], CoreDataManagerError> {
         return coreDataManager.getAllElements(resultType: RecipeSave.self, predicate: nil)
     }
+
     
     func save(recipeToSave: Recipe) -> Result<Void, CoreDataManagerError> {
         
         let recipeObjectToSave = coreDataManager.getObject(objectType: RecipeSave.self)
     
-        
         recipeObjectToSave.image = recipeToSave.image
         recipeObjectToSave.title = recipeToSave.label
         recipeObjectToSave.ingredient = recipeToSave.ingredientLines
         recipeObjectToSave.time = Int64(recipeToSave.totalTime)
         recipeObjectToSave.url = recipeToSave.url
-        
         return coreDataManager.save()
     }
     
@@ -52,10 +51,13 @@ class FavoriteRecipeDataManager {
         }
     }
 
-    
     func deleteRecipe(recipe: Recipe) -> Result<Void, CoreDataManagerError> {
         let predicate = NSPredicate(format: "url == %@", recipe.url)
         return coreDataManager.removeAllElements(resultType: RecipeSave.self, predicate: predicate)
+    }
+    
+    func deleteAllRecipes() -> Result<Void, CoreDataManagerError> {
+        return coreDataManager.removeAllElements(resultType: RecipeSave.self, predicate: nil)
     }
     
 }

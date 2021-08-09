@@ -133,9 +133,9 @@ extension RecipesViewController: UITableViewDataSource {
             print("error")
         }
         
-        cell.ingredientList.text = "\(cellRecipe.totalTime) Minutes"
-    
-        
+        cell.cuisineTypeLabel.text = "Type de cuisine : \(cellRecipe.cuisineType[0].capitalized)"
+        cell.caloriesLabel.text = "\(Int(cellRecipe.calories.rounded()))   Kcal"
+        cell.timeLabel.text = "\(cellRecipe.totalTime)  Min"
         
         
         return cell

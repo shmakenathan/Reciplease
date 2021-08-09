@@ -23,5 +23,7 @@ struct Recipe: Codable {
     var url: String
     var ingredientLines: [String]
     var totalTime: Int
+    var calories: Double
+    var cuisineType: [String]
 }
 

@@ -10,15 +10,18 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
-    @IBOutlet weak var ingredientList: UILabel!
+    @IBOutlet weak var cuisineTypeLabel: UILabel!
+    @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        infoView.layer.cornerRadius = 10
         let gradientLayer = CAGradientLayer()
         gradientLayer.type = .axial
         

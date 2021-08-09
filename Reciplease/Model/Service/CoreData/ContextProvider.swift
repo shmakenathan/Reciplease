@@ -8,7 +8,18 @@
 
 import CoreData
 
-class ContextProvider {
+protocol ContextProviderProtocol {
+    var context: NSManagedObjectContext { get }
+    
+    func fetch<T: NSFetchRequestResult>(request: NSFetchRequest<T>) -> Result<[T], CoreDataManagerError>
+    func save() -> Result<Void, CoreDataManagerError>
+    func delete(object: NSManagedObject)
+}
+
+
+
+
+class ContextProvider: ContextProviderProtocol {
     
     static func getContext(
         fromContainer container: NSPersistentContainer = NSPersistentContainer(name: "Reciplease"),
