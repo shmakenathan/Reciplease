@@ -1,0 +1,9 @@
+/* 
+  Strings.strings
+  Reciplease
+
+  Created by Nathan on 16/08/2021.
+  Copyright © 2021 NathanChicha. All rights reserved.
+*/
+
+"error_failed_ingredient_is_emptz" = "YOu have to add ingredient";

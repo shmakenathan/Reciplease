@@ -24,7 +24,7 @@ class RecipesViewController: BaseViewController {
     // MARK: Properties - Private
     
     private let favoriteRecipeDataManager = FavoriteRecipeDataManager()
-  
+    
     private var favoritedRecipesList: [RecipeSave] = [] {
         didSet {
             recipesTableView.reloadData()
@@ -51,7 +51,7 @@ class RecipesViewController: BaseViewController {
             case .failure(let error):
                 presentAlert(title: "Error", message: error.localizedDescription)
             }
-            ifHaveFavorite()
+            handleNoRecipeViewVisibility()
         }
         
         
@@ -59,7 +59,7 @@ class RecipesViewController: BaseViewController {
     
     // MARK: Methods - Private
     
-    private func ifHaveFavorite() {
+    private func handleNoRecipeViewVisibility() {
         if favoritedRecipesList.count > 0 {
             noFavoriteView.isHidden = true
         } else {
@@ -123,7 +123,8 @@ extension RecipesViewController: UITableViewDataSource {
         }
         cell.recipeTitleLabel.text = cellRecipe.label
         
-        guard let urlImage = URL(string: cellRecipe.image) else {
+        guard let urlImage = URL(string: cellRecipe.image)
+        else {
             return cell
         }
         do {
@@ -132,8 +133,13 @@ extension RecipesViewController: UITableViewDataSource {
         } catch _ {
             print("error")
         }
+        if let cuisine = cellRecipe.cuisineType {
+            cell.cuisineTypeLabel.text = "Type de cuisine : \(cuisine[0].capitalized)"
+        }
+        else {
+            cell.cuisineTypeLabel.text = "Type de cuisine : Inconnu"
+        }
         
-        cell.cuisineTypeLabel.text = "Type de cuisine : \(cellRecipe.cuisineType[0].capitalized)"
         cell.caloriesLabel.text = "\(Int(cellRecipe.calories.rounded()))   Kcal"
         cell.timeLabel.text = "\(cellRecipe.totalTime)  Min"
         

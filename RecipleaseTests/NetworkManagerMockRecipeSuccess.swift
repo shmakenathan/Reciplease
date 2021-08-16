@@ -12,7 +12,24 @@ class NetworkManagerMockRecipeSuccess: NetworkManagerProtocol {
     func fetchResult<T>(url: URL, completionHandler: @escaping (Result<T, NetworkManagerError>) -> Void) where T : Decodable {
         //completionHandler(.failure(.couldNotDecodeJson))
         
-        let recipeResult = RecipeSearchResponse(count: 4, hits: [Hit(recipe: Recipe(label: "Omelette", image: "", url: "", ingredientLines: ["Chesse", "eggs"], totalTime: 100))])
+        let recipe = Recipe(
+            label: "Omelette",
+            image: "",
+            url: "",
+            ingredientLines: ["Chesse", "eggs"],
+            totalTime: 100,
+            calories: 40,
+            cuisineType: ["French"]
+        )
+        
+        let recipeResult = RecipeSearchResponse(
+            count: 4,
+            hits: [
+                Hit(recipe: recipe)
+            ]
+        )
+        
+        
         completionHandler(.success(recipeResult as! T))
     }
     

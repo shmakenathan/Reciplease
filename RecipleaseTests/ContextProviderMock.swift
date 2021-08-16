@@ -11,8 +11,9 @@ import CoreData
 @testable import Reciplease
 
 
+
 class ContextProviderMock: ContextProviderProtocol {
-    let context: NSManagedObjectContext = ContextProvider.getContext()
+    let context: NSManagedObjectContext = ContextProvider.getContext(shouldBeInMemory: true)
     
     func fetch<T>(request: NSFetchRequest<T>) -> Result<[T], CoreDataManagerError> where T : NSFetchRequestResult {
         return .failure(.failedToFetchElements)

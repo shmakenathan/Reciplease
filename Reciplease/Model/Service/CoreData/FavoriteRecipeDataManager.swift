@@ -33,6 +33,8 @@ class FavoriteRecipeDataManager {
         recipeObjectToSave.ingredient = recipeToSave.ingredientLines
         recipeObjectToSave.time = Int64(recipeToSave.totalTime)
         recipeObjectToSave.url = recipeToSave.url
+        recipeObjectToSave.calories = recipeToSave.calories
+        recipeObjectToSave.cuisineType = recipeToSave.cuisineType
         return coreDataManager.save()
     }
     

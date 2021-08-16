@@ -18,9 +18,17 @@ class FavoriteRecipeDataManagerTests: XCTestCase {
     
     func test_givenNotYetStoredRecipe_whenSavingRecipe_thenRecipeIsAddedToStoredRecipes() {
         
+        let recipe = Recipe(
+            label: "Pizza",
+            image: "",
+            url: "www.myrecipes.com/pizza",
+            ingredientLines: [],
+            totalTime: 3,
+            calories: 40,
+            cuisineType: []
+        )
         
-        let recipe = Recipe(label: "Pizza", image: "", url: "www.myrecipes.com/pizza", ingredientLines: [], totalTime: 3)
-        
+       
         
         switch favoriteRecipeDataManager.getAll() {
         case .failure:
@@ -57,10 +65,15 @@ class FavoriteRecipeDataManagerTests: XCTestCase {
 
     func test_givenOneStoredRecipe_whenDeletingRecipe_thenGetEmptyRecipes() {
 
-
-        let recipe = Recipe(label: "Pizza", image: "", url: "www.myrecipes.com/pizza", ingredientLines: [], totalTime: 3)
-        
-        
+        let recipe = Recipe(
+            label: "Pizza",
+            image: "",
+            url: "www.myrecipes.com/pizza",
+            ingredientLines: [],
+            totalTime: 3,
+            calories: 40,
+            cuisineType: []
+        )
         
         _ = favoriteRecipeDataManager.save(recipeToSave: recipe)
 
@@ -91,7 +104,15 @@ class FavoriteRecipeDataManagerTests: XCTestCase {
     func test_givenOneStoredRecipe_whenCheckingIfRecipeIsFavorite_thenGetTrue() {
 
 
-        let recipe = Recipe(label: "Pizza", image: "", url: "www.myrecipes.com/pizza", ingredientLines: [], totalTime: 3)
+        let recipe = Recipe(
+            label: "Pizza",
+            image: "",
+            url: "www.myrecipes.com/pizza",
+            ingredientLines: [],
+            totalTime: 3,
+            calories: 40,
+            cuisineType: []
+        )
         
         
         
@@ -122,7 +143,15 @@ class FavoriteRecipeDataManagerTests: XCTestCase {
     func test_givenNoStoredRecipe_whenCheckingIfRecipeIsFavorite_thenGetFalse() {
 
 
-        let recipe = Recipe(label: "Pizza", image: "", url: "www.myrecipes.com/pizza", ingredientLines: [], totalTime: 3)
+        let recipe = Recipe(
+            label: "Pizza",
+            image: "",
+            url: "www.myrecipes.com/pizza",
+            ingredientLines: [],
+            totalTime: 3,
+            calories: 40,
+            cuisineType: []
+        )
         
 
 
@@ -147,6 +176,31 @@ class FavoriteRecipeDataManagerTests: XCTestCase {
 
     }
     
+    
+    func test_givenNoStoredRecipe_whenCheckingIfRecipeIsFavorite_thenGetCoreDataError() {
+        let coreDataManagerFailureMock = CoreDataManagerFailureMock()
+        favoriteRecipeDataManager = FavoriteRecipeDataManager(coreDataManager: coreDataManagerFailureMock)
+
+        let recipe = Recipe(
+            label: "Pizza",
+            image: "",
+            url: "www.myrecipes.com/pizza",
+            ingredientLines: [],
+            totalTime: 3,
+            calories: 40,
+            cuisineType: []
+        )
+
+
+        switch favoriteRecipeDataManager.isRecipeFavorited(recipe: recipe) {
+        case .failure:
+            XCTAssertTrue(true)
+        case .success:
+            XCTFail()
+        }
+
+
+    }
     
 
 }

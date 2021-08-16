@@ -22,21 +22,28 @@ protocol ContextProviderProtocol {
 class ContextProvider: ContextProviderProtocol {
     
     static func getContext(
+        shouldBeInMemory: Bool,
         fromContainer container: NSPersistentContainer = NSPersistentContainer(name: "Reciplease"),
         stopExecution: @escaping (@autoclosure () -> String, StaticString, UInt) -> Never
-        = Swift.fatalError) -> NSManagedObjectContext {
-
-        container.loadPersistentStores { (_, error) in
-            if let error = error as NSError? {
-                stopExecution("Unresolved error \(error), \(error.userInfo)", #file, #line)
-            }
+            = Swift.fatalError) -> NSManagedObjectContext {
+        
+        
+        if shouldBeInMemory {
+            let description = NSPersistentStoreDescription()
+            description.type = NSInMemoryStoreType
+            description.shouldAddStoreAsynchronously = false
+            
+            container.persistentStoreDescriptions = [description]
         }
+        
+        container.loadPersistentStores { _, _ in }
+        
         let context = container.viewContext
         return context
     }
     
     
-    init(context: NSManagedObjectContext = getContext()) {
+    init(context: NSManagedObjectContext = getContext(shouldBeInMemory: false)) {
         self.context = context
     }
     

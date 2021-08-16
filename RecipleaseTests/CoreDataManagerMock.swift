@@ -39,3 +39,29 @@ class CoreDataManagerMock: CoreDataManagerProtocol {
     
     
 }
+
+
+
+
+class CoreDataManagerFailureMock: CoreDataManagerProtocol {
+    func getAllElements<T>(resultType: T.Type, predicate: NSPredicate?) -> Result<[T], CoreDataManagerError> where T : NSFetchRequestResult {
+        
+        return .failure(.failedToFetchElements)
+    }
+    
+    func removeAllElements<T>(resultType: T.Type, predicate: NSPredicate?) -> Result<Void, CoreDataManagerError> where T : NSManagedObject {
+        return .failure(.failedToRemoveElements)
+    }
+    
+    func save() -> Result<Void, CoreDataManagerError> {
+        return .success(())
+    }
+    
+    func getObject<T>(objectType: T.Type) -> T where T : NSManagedObject {
+        let recipeTest = RecipeSave()
+        
+        return recipeTest as! T
+    }
+    
+    
+}

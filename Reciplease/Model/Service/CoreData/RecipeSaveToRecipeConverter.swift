@@ -16,13 +16,12 @@ class RecipeSaveToRecipeConverter {
         guard let image = recipeSave.image,
               let url = recipeSave.url,
               let title = recipeSave.title,
-              let ingredient = recipeSave.ingredient,
-              let cuisine = recipeSave.cuisineType
+              let ingredient = recipeSave.ingredient
+        
         else {
             return nil
         }
         
-
         
         let recipe = Recipe(label: title,
                             image: image,
@@ -30,7 +29,7 @@ class RecipeSaveToRecipeConverter {
                             ingredientLines: ingredient,
                             totalTime:  Int(recipeSave.time),
                             calories: recipeSave.calories,
-                            cuisineType: cuisine)
+                            cuisineType: recipeSave.cuisineType)
         
         
         return recipe

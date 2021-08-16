@@ -146,9 +146,19 @@ class FridgeServiceTests: XCTestCase {
 
     
     func test_asdadsads() {
-        let recipeNetworkManagerMock = RecipeNetworkManagerMock(result: .success([
-            Recipe(label: "Pizza", image: "", url: "", ingredientLines: [], totalTime: 3)
-        ]))
+        let recipe = Recipe(
+            label: "Pizza",
+            image: "",
+            url: "",
+            ingredientLines: [],
+            totalTime: 3,
+            calories: 40,
+            cuisineType: []
+        )
+        
+        let recipeResult: Result<[Recipe], RecipeNetworkManagerError> = .success([recipe])
+        
+        let recipeNetworkManagerMock = RecipeNetworkManagerMock(result: recipeResult)
         let fridgeService = FridgeService(recipeNetworkManager: recipeNetworkManagerMock)
         
         

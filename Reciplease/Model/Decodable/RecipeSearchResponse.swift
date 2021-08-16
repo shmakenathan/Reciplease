@@ -24,6 +24,6 @@ struct Recipe: Codable {
     var ingredientLines: [String]
     var totalTime: Int
     var calories: Double
-    var cuisineType: [String]
+    var cuisineType: [String]?
 }
 

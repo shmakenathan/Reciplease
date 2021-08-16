@@ -32,7 +32,8 @@ class AlamofireNetworkManager: NetworkManagerProtocol {
         alamofireSession.fetch(urlRequest: urlRequest) { (response: DataResponse<T, AFError>) in
             
             switch response.result {
-            case .failure:
+            case .failure(let error):
+                print(error.localizedDescription)
                 completionHandler(.failure(.unknownErrorOccured))
                 return
             case .success(let response):

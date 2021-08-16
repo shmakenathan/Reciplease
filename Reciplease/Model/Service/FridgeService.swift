@@ -46,6 +46,7 @@ class FridgeService {
         ingredients.removeAll()
     }
     
+
     func searchRecipes(completionHandler: @escaping (Result<[Recipe], FridgeServiceError>) -> Void) {
    
         recipeNetworkManager.fetchRecipe(

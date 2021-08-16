@@ -11,6 +11,14 @@ import XCTest
 
 class CoreDataManagerTests: XCTestCase {
     
+    override func setUp() {
+        super.setUp()
+        
+        let coreDataManager = CoreDataManager()
+        
+        _ =  coreDataManager.removeAllElements(resultType: RecipeSave.self, predicate: nil)
+    }
+    
     func test_givenFailureContextProviderFetch_whenGetAllElements_thenGetFailedToFetchElementsError() {
         let contextProviderMock = ContextProviderMock()
         let coreDataManager = CoreDataManager(contextProvider: contextProviderMock)
