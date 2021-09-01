@@ -11,9 +11,9 @@ enum FridgeServiceError: Error {
     var message: String {
         switch self {
         case .failedAddIngredientIngredientIsEmpty: return Strings.failedAttIngredientEmptyError
-        case .failedToAddIngredientAlreadyAdded: return "Ingredient déja ajouté"
-        case .failedToAddIngredientIngredientContainsSpecialCharacter: return "Ingredient non reconnu"
-        case .failedToSearchRecipes: return "Veuillez réessayer plus tard"
+        case .failedToAddIngredientAlreadyAdded: return Strings.failedToAddIngredientAlreadyAdded
+        case .failedToAddIngredientIngredientContainsSpecialCharacter: return Strings.failedToAddIngredientIngredientContainsSpecialCharacter
+        case .failedToSearchRecipes: return Strings.failedToSearchRecipes
         }
     }
 }

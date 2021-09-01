@@ -70,7 +70,13 @@
                                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="heavy"/>
                                                                                                         </imageView>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RV-ED-3nV">
-                                                                                                            <rect key="frame" x="30" y="0.0" width="90" height="30"/>
+                                                                                                            <rect key="frame" x="30" y="0.0" width="50" height="30"/>
+                                                                                                            <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
+                                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                            <nil key="highlightedColor"/>
+                                                                                                        </label>
+                                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTv-NB-6GH">
+                                                                                                            <rect key="frame" x="80" y="0.0" width="40" height="30"/>
                                                                                                             <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
                                                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                             <nil key="highlightedColor"/>
@@ -90,7 +96,13 @@
                                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" scale="default" weight="heavy"/>
                                                                                                         </imageView>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lm-jD-8ZS">
-                                                                                                            <rect key="frame" x="30" y="0.0" width="90" height="30"/>
+                                                                                                            <rect key="frame" x="30" y="0.0" width="50" height="30"/>
+                                                                                                            <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
+                                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                            <nil key="highlightedColor"/>
+                                                                                                        </label>
+                                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gg2-mN-cul">
+                                                                                                            <rect key="frame" x="80" y="0.0" width="40" height="30"/>
                                                                                                             <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
                                                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                             <nil key="highlightedColor"/>
@@ -181,10 +193,12 @@
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="calorieLabel" destination="qTv-NB-6GH" id="hlv-Ab-NgO"/>
                                             <outlet property="caloriesLabel" destination="4RV-ED-3nV" id="wOj-dR-DnO"/>
                                             <outlet property="cuisineTypeLabel" destination="XOc-3S-YNK" id="20J-xJ-ZZ9"/>
                                             <outlet property="gradientView" destination="via-0B-VBT" id="URZ-ZQ-VPW"/>
                                             <outlet property="infoView" destination="98b-SP-l1D" id="OFc-1L-1ze"/>
+                                            <outlet property="minuteLabel" destination="Gg2-mN-cul" id="fLn-9p-EXN"/>
                                             <outlet property="recipeImageView" destination="Qh2-HF-FFg" id="1oX-uT-sl3"/>
                                             <outlet property="recipeTitleLabel" destination="1sg-tc-vI8" id="WI1-Wu-DtZ"/>
                                             <outlet property="timeLabel" destination="0lm-jD-8ZS" id="cS9-6C-Zip"/>
@@ -557,6 +571,8 @@
                         <outlet property="ingredientTextField" destination="oi6-YU-icN" id="1pb-dh-z1f"/>
                         <outlet property="ingredientsTableView" destination="a8z-Yf-x4Q" id="LYi-Rt-I4l"/>
                         <outlet property="searchTapButton" destination="vGt-OW-9c0" id="IuE-5A-Chx"/>
+                        <outlet property="whatsInYourFridge" destination="hKc-Ta-I0T" id="SUz-yS-m5x"/>
+                        <outlet property="yourIngredient" destination="xXQ-BI-D6F" id="Ryy-Ey-LWh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCS-1k-I0U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

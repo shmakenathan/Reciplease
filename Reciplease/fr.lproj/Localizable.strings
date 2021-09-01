@@ -6,5 +6,15 @@
   Copyright © 2021 NathanChicha. All rights reserved.
 */
 
-"error_failed_ingredient_is_emptz" = "Vous devey ajouter un ingrédient";
-
+"error_failed_ingredient_is_empty" = "Vous devez ajouter un ingrédient";
+"error_failed_ingredient_already_Added" = "Vous avez deja rajouter cet ingredient";
+"error_failed_ingredient_contains_special_character" = "Votre ingredient contient des caracteres special";
+"error_failed_to_research_recipe" = "Impossible de rechercher des recettes";
+"kindOfMeal" = " Type de Cuisine";
+"Unknown" = "Inconnu";
+"yourIngredient" = "Vos ingredients (en anglais)";
+"whatsInYourFridge" = "Que se trouve t'il dans votre frigo ?";
+"searchForRecipe" = "Recherchez Recette";
+"getDirections" = "Vers la Recette";
+"kcal" = "kcal";
+"min" = "min";

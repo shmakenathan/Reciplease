@@ -12,9 +12,10 @@ import CoreData
 class RecipesViewController: BaseViewController {
     
     // MARK: IBOutlet
-    
+   
     @IBOutlet weak var noFavoriteView: UIView!
     @IBOutlet weak var recipesTableView: UITableView!
+    
     
     // MARK: Properties - Public
     
@@ -134,14 +135,14 @@ extension RecipesViewController: UITableViewDataSource {
             print("error")
         }
         if let cuisine = cellRecipe.cuisineType {
-            cell.cuisineTypeLabel.text = "Type de cuisine : \(cuisine[0].capitalized)"
+            cell.cuisineTypeLabel.text = Strings.kindOfMeal +  " : \(cuisine[0].capitalized)"
         }
         else {
-            cell.cuisineTypeLabel.text = "Type de cuisine : Inconnu"
+            cell.cuisineTypeLabel.text = Strings.kindOfMeal + " : " + Strings.Unknown
         }
         
-        cell.caloriesLabel.text = "\(Int(cellRecipe.calories.rounded()))   Kcal"
-        cell.timeLabel.text = "\(cellRecipe.totalTime)  Min"
+        cell.caloriesLabel.text = "\(Int(cellRecipe.calories.rounded()))"
+        cell.timeLabel.text = "\(cellRecipe.totalTime <= 0 ? "--" : cellRecipe.totalTime.description)"
         
         
         return cell
@@ -150,10 +151,6 @@ extension RecipesViewController: UITableViewDataSource {
     
     
 }
-
-
-
-
 
 extension UIView {
     func addTopBorderWithColor(color: UIColor, width: CGFloat) {

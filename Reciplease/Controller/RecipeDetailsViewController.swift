@@ -58,6 +58,7 @@ class RecipeDetailsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDirectionsButton.titleLabel?.text = Strings.getDirections
         titleLabel.text = selectedRecipe?.label
         printImage()
         getDirectionsButton.layer.cornerRadius = 10

@@ -6,4 +6,15 @@
   Copyright © 2021 NathanChicha. All rights reserved.
 */
 
-"error_failed_ingredient_is_emptz" = "YOu have to add ingredient";
+"error_failed_ingredient_is_empty" = "You have to add ingredient";
+"error_failed_ingredient_already_Added" = "You have already added this Ingredient";
+"error_failed_ingredient_contains_special_character" = "Ingredient contains wrong character";
+"error_failed_to_research_recipe" = "Failed to search recipe";
+"kindOfMeal" = "Kind Of Meal";
+"Unknown" = " Unknown";
+"yourIngredient" = "Your ingredients";
+"whatsInYourFridge" = "What's in your fridge ?";
+"searchForRecipe" = "Search for Recipe";
+"getDirections" = "Get Directions";
+"kcal" = "kcal";
+"min" = "min";

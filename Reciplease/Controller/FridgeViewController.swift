@@ -14,6 +14,8 @@ class FridgeViewController: BaseViewController {
     
     // MARK: IBOutlet
     
+    @IBOutlet weak var yourIngredient: UILabel!
+    @IBOutlet weak var whatsInYourFridge: UILabel!
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var searchTapButton: UIButton!
@@ -52,7 +54,7 @@ class FridgeViewController: BaseViewController {
     
     
     private let fridgeService = FridgeService()
-
+   
     // MARK: Properties - Private
     
 
@@ -70,7 +72,9 @@ class FridgeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        yourIngredient.text = Strings.yourIngredient
+        whatsInYourFridge.text = Strings.whatsInYourFridge
+        searchTapButton.titleLabel?.text = Strings.searchForRecipe
         searchTapButton.layer.cornerRadius = 10
         
         fridgeService.delegate = self

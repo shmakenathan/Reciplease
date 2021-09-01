@@ -11,11 +11,24 @@ import XCTest
 
 class FridgeServiceErrorTests: XCTestCase {
 
-    func testExample() {
+    func testfailedAddIngredientIngredientIsEmpty() {
         let fridgeServiceError: FridgeServiceError = .failedAddIngredientIngredientIsEmpty
         
-        XCTAssertEqual(fridgeServiceError.message, "Aucun ingredient à ajouter, veuillez en rajouter un")
+        XCTAssertEqual(fridgeServiceError.message, "Vous devez ajouter un ingrédient")
     }
-
+    func testfailedToAddIngredientAlreadyAdded() {
+        let fridgeServiceError: FridgeServiceError = .failedToAddIngredientAlreadyAdded
+        
+        XCTAssertEqual(fridgeServiceError.message, "Vous avez deja rajouter cet ingredient")
+    }
+    func testfailedToAddIngredientIngredientContainsSpecialCharacter() {
+        let fridgeServiceError: FridgeServiceError = .failedToAddIngredientIngredientContainsSpecialCharacter
+        
+        XCTAssertEqual(fridgeServiceError.message, "Votre ingredient contient des caracteres special")
+    }
+    func testfailedToSearchRecipes() {
+        let fridgeServiceError: FridgeServiceError = .failedToSearchRecipes
+        XCTAssertEqual(fridgeServiceError.message, "Impossible de rechercher des recettes")
+    }
 
 }
