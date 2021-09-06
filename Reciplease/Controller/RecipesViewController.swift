@@ -24,7 +24,7 @@ class RecipesViewController: BaseViewController {
     
     // MARK: Properties - Private
     
-    private let favoriteRecipeDataManager = FavoriteRecipeDataManager()
+    private let favoriteRecipeDataManager = FavoriteRecipeDataManager.shared
     
     private var favoritedRecipesList: [RecipeSave] = [] {
         didSet {
@@ -151,6 +151,7 @@ extension RecipesViewController: UITableViewDataSource {
     
     
 }
+
 
 extension UIView {
     func addTopBorderWithColor(color: UIColor, width: CGFloat) {

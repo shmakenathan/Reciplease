@@ -12,6 +12,8 @@ import CoreData
 
 class FavoriteRecipeDataManager {
     
+    static let shared = FavoriteRecipeDataManager()
+    
     init(coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.coreDataManager = coreDataManager
     }

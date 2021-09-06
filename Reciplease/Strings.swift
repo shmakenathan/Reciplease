@@ -22,5 +22,5 @@ enum Strings {
     static let getDirections = NSLocalizedString("getDirections", comment: "")
     static let kcal = NSLocalizedString("kcal", comment: "")
     static let min = NSLocalizedString("min", comment: "")
-    
+    static let error = NSLocalizedString("error", comment: "")
 }

@@ -47,7 +47,7 @@ class RecipeDetailsViewController: BaseViewController {
     
     // MARK: Properties - Private
     
-    private let favoriteRecipeDataManager = FavoriteRecipeDataManager()
+    private let favoriteRecipeDataManager = FavoriteRecipeDataManager.shared
     private var isPresentedRecipeFavorited = false {
         didSet {
             favoriteBarButtonItem.image = isPresentedRecipeFavorited ?

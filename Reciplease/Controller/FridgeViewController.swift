@@ -63,7 +63,7 @@ class FridgeViewController: BaseViewController {
     // MARK: Methods - Private
     
     private func handleError(error: FridgeServiceError) {
-        presentAlert(title: "Error", message: error.message)
+        presentAlert(title: Strings.error, message: error.message)
     }
     
     
@@ -74,7 +74,7 @@ class FridgeViewController: BaseViewController {
         super.viewDidLoad()
         yourIngredient.text = Strings.yourIngredient
         whatsInYourFridge.text = Strings.whatsInYourFridge
-        searchTapButton.titleLabel?.text = Strings.searchForRecipe
+        searchTapButton.setTitle(Strings.searchForRecipe, for: .normal)
         searchTapButton.layer.cornerRadius = 10
         
         fridgeService.delegate = self
@@ -99,12 +99,12 @@ class FridgeViewController: BaseViewController {
             switch result {
             case .failure(let erreur):
                 self.changeLoadingIndicatorVisibility(shouldShow: false)
-                self.presentAlert(title: "Error", message: erreur.message)
+                self.presentAlert(title: Strings.error, message: erreur.message)
                 
             case .success(let recipes):
                 self.changeLoadingIndicatorVisibility(shouldShow: false)
                 if recipes.count == 0 {
-                    self.presentAlert(title: "Error", message: RecipleaseError.noResults.message)
+                    self.presentAlert(title: Strings.error, message: RecipleaseError.noResults.message)
                 } else {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     guard let recipesViewController = storyboard.instantiateViewController(withIdentifier: "RecipesViewController") as? RecipesViewController else { return }
