@@ -84,6 +84,14 @@ class RecipeDetailsViewController: BaseViewController {
     }
     
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        gradientLayer?.frame = gradientView.bounds
+    }
+
+    
+    private var gradientLayer: CAGradientLayer?
     
     private func addGradient(view: UIView) {
         let gradient = CAGradientLayer()
@@ -94,10 +102,11 @@ class RecipeDetailsViewController: BaseViewController {
         ]
         gradient.startPoint = CGPoint(x: 1, y: 0)
         gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.frame = view.bounds
+        gradient.frame = gradientView.bounds
         
         gradient.locations = [0.2, 1]
         view.layer.addSublayer(gradient)
+        self.gradientLayer = gradient
         
     }
     

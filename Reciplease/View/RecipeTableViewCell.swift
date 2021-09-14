@@ -20,6 +20,8 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var minuteLabel: UILabel!
     
+    private var gradientLayer: CAGradientLayer?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,6 +43,13 @@ class RecipeTableViewCell: UITableViewCell {
         gradientLayer.locations = [0.2, 1]
         
         gradientView.layer.addSublayer(gradientLayer)
+        self.gradientLayer = gradientLayer
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        gradientLayer?.frame = contentView.bounds
     }
     
 

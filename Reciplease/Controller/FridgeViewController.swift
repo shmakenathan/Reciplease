@@ -69,7 +69,7 @@ class FridgeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = Strings.titleFridge
+        navigationItem.title = Strings.titleFridge
         yourIngredient.text = Strings.yourIngredient
         whatsInYourFridge.text = Strings.whatsInYourFridge
         searchTapButton.setTitle(Strings.searchForRecipe, for: .normal)
