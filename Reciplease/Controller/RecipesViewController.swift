@@ -12,7 +12,8 @@ import CoreData
 class RecipesViewController: BaseViewController {
     
     // MARK: IBOutlet
-   
+    
+    @IBOutlet weak var addNewRecipeLabel: UILabel!
     @IBOutlet weak var noFavoriteView: UIView!
     @IBOutlet weak var recipesTableView: UITableView!
     
@@ -37,6 +38,8 @@ class RecipesViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addNewRecipeLabel.text = Strings.searchNewFav
+        self.navigationItem.title = Strings.titleRecipes
         recipesTableView.delegate = self
         recipesTableView.dataSource = self
     }
@@ -54,8 +57,6 @@ class RecipesViewController: BaseViewController {
             }
             handleNoRecipeViewVisibility()
         }
-        
-        
     }
     
     // MARK: Methods - Private
@@ -67,7 +68,6 @@ class RecipesViewController: BaseViewController {
             noFavoriteView.isHidden = false
         }
     }
-    
 }
 
 extension RecipesViewController: UITableViewDelegate {
@@ -152,28 +152,3 @@ extension RecipesViewController: UITableViewDataSource {
     
 }
 
-
-extension UIView {
-    func addTopBorderWithColor(color: UIColor, width: CGFloat) {
-        setupBorder(color: color, frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: width))
-    }
-    
-    func addRightBorderWithColor(color: UIColor, width: CGFloat) {
-        setupBorder(color: color, frame: CGRect(x: self.frame.size.width - width, y: 0, width: width, height: self.frame.size.height))
-    }
-    
-    func addLeftBorderWithColor(color: UIColor, width: CGFloat) {
-        setupBorder(color: color, frame: CGRect(x: 0, y: 0, width: width, height: self.frame.size.height))
-    }
-    
-    func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
-        setupBorder(color: color, frame: CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: width))
-    }
-    
-    func setupBorder(color: UIColor, frame: CGRect) {
-        let border = CALayer()
-        border.backgroundColor = color.cgColor
-        border.frame = frame
-        self.layer.addSublayer(border)
-    }
-}

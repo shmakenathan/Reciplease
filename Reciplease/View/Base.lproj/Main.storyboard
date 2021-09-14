@@ -213,8 +213,8 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-cg-YQL">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new Favorite Recipe " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kiq-A9-Hkz">
-                                        <rect key="frame" x="87.5" y="327.5" width="239" height="70"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ Add new Favorite Recipe " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kiq-A9-Hkz">
+                                        <rect key="frame" x="78.5" y="327.5" width="257.5" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="BLp-I2-B6B"/>
                                         </constraints>
@@ -247,6 +247,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="gzV-7N-hro"/>
                     <connections>
+                        <outlet property="addNewRecipeLabel" destination="Kiq-A9-Hkz" id="fAA-4m-LsU"/>
                         <outlet property="noFavoriteView" destination="EVj-cg-YQL" id="Atf-X4-2QI"/>
                         <outlet property="recipesTableView" destination="hmZ-E8-6XV" id="YNo-7q-HP7"/>
                     </connections>
@@ -635,11 +636,11 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="-1011.1607142857142"/>
         </scene>
-        <!--Favoris-->
+        <!--Favorite-->
         <scene sceneID="egL-zP-gT2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u62-zm-u2y" customClass="RecipleaseNavigationController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favoris" image="star.fill" catalog="system" id="xwW-ec-0nt">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="xwW-ec-0nt">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>

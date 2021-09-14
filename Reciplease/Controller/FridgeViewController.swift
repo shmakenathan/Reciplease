@@ -14,20 +14,20 @@ class FridgeViewController: BaseViewController {
     
     // MARK: IBOutlet
     
-    @IBOutlet weak var yourIngredient: UILabel!
-    @IBOutlet weak var whatsInYourFridge: UILabel!
-    @IBOutlet weak var ingredientTextField: UITextField!
-    @IBOutlet weak var ingredientsTableView: UITableView!
-    @IBOutlet weak var searchTapButton: UIButton!
+    @IBOutlet private weak var yourIngredient: UILabel!
+    @IBOutlet private weak var whatsInYourFridge: UILabel!
+    @IBOutlet private weak var ingredientTextField: UITextField!
+    @IBOutlet private weak var ingredientsTableView: UITableView!
+    @IBOutlet private weak var searchTapButton: UIButton!
     
     // MARK: IBAction
+    
     @IBAction func tapToResignKeyboard(_ sender: UITapGestureRecognizer) {
         ingredientTextField.resignFirstResponder()
     }
     
     @IBAction func addTapButton(_ sender: Any) {
         guard let ingredient = ingredientTextField.text else { return }
-
         switch fridgeService.addIngredient(ingredient) {
         case .success(): break
         case .failure(let error): handleError(error: error)
@@ -53,11 +53,11 @@ class FridgeViewController: BaseViewController {
     }
     
     
-    private let fridgeService = FridgeService()
    
     // MARK: Properties - Private
     
-
+    
+    private let fridgeService = FridgeService()
     private let recipeNetworkManager = RecipeNetworkManager()
     
     // MARK: Methods - Private
@@ -67,18 +67,14 @@ class FridgeViewController: BaseViewController {
     }
     
     
-
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = Strings.titleFridge
         yourIngredient.text = Strings.yourIngredient
         whatsInYourFridge.text = Strings.whatsInYourFridge
         searchTapButton.setTitle(Strings.searchForRecipe, for: .normal)
         searchTapButton.layer.cornerRadius = 10
-        
         fridgeService.delegate = self
-        
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
         
@@ -86,7 +82,6 @@ class FridgeViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         ingredientTextField.addBottomBorderWithColor(color: .gray, width: 1)
     }
     
@@ -141,13 +136,10 @@ extension FridgeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientCell") else {
             return UITableViewCell()
         }
-        
         cell.textLabel?.text = "- "+fridgeService.ingredients[indexPath.row].capitalized
-        
         return cell
     }
     

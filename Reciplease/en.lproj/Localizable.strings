@@ -19,3 +19,9 @@
 "kcal" = "kcal";
 "min" = "min";
 "error" = "Error";
+"titleFridge" = "Fridge";
+"titleRecipes" = "Recipes";
+"titleRecipeDetails" = "Recipe Details";
+"searchNewFav" = "+ Add new Favorite Recipe";
+"favorite" = "Favorite";
+"search" = "Search";

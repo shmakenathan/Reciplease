@@ -23,4 +23,10 @@ enum Strings {
     static let kcal = NSLocalizedString("kcal", comment: "")
     static let min = NSLocalizedString("min", comment: "")
     static let error = NSLocalizedString("error", comment: "")
+    static let titleFridge = NSLocalizedString("titleFridge", comment: "")
+    static let titleRecipes = NSLocalizedString("titleRecipes", comment: "")
+    static let titleRecipeDetails = NSLocalizedString("titleRecipeDetails", comment: "")
+    static let search = NSLocalizedString("search", comment: "")
+    static let favorite = NSLocalizedString("favorite", comment: "")
+    static let searchNewFav = NSLocalizedString("searchNewFav", comment: "")
 }

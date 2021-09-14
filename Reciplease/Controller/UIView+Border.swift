@@ -6,7 +6,9 @@
 //  Copyright © 2021 NathanChicha. All rights reserved.
 //
 
-/*extension UIView {
+import UIKit
+
+extension UIView {
     func addTopBorderWithColor(color: UIColor, width: CGFloat) {
         setupBorder(color: color, frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: width))
     }
@@ -30,4 +32,4 @@
         self.layer.addSublayer(border)
     }
 }
-*/
+

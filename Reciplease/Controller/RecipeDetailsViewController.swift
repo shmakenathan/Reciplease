@@ -56,9 +56,13 @@ class RecipeDetailsViewController: BaseViewController {
         }
     }
     
+    
+    // MARK: Methods - Private
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDirectionsButton.titleLabel?.text = Strings.getDirections
+        getDirectionsButton.setTitle(Strings.getDirections, for: .normal)
+        self.navigationItem.title = Strings.titleRecipeDetails
         titleLabel.text = selectedRecipe?.label
         printImage()
         getDirectionsButton.layer.cornerRadius = 10
@@ -69,9 +73,6 @@ class RecipeDetailsViewController: BaseViewController {
         super.viewDidAppear(animated)
         handleSelectedFavoriteState()
     }
-    
-    // MARK: Methods - Private
-    
     private func handleSelectedFavoriteState() {
         guard let selectedRecipe = selectedRecipe else { return }
         switch favoriteRecipeDataManager.isRecipeFavorited(recipe: selectedRecipe) {

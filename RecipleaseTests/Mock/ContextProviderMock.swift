@@ -13,7 +13,21 @@ import CoreData
 
 
 class ContextProviderMock: ContextProviderProtocol {
-    let context: NSManagedObjectContext = ContextProvider.getContext(shouldBeInMemory: true)
+    lazy var context: NSManagedObjectContext = {
+        
+        let container: NSPersistentContainer = NSPersistentContainer(name: "Reciplease")
+        
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
+        
+        container.persistentStoreDescriptions = [description]
+        
+        container.loadPersistentStores { _, _ in }
+        
+        let context = container.viewContext
+        return context
+    }()
     
     func fetch<T>(request: NSFetchRequest<T>) -> Result<[T], CoreDataManagerError> where T : NSFetchRequestResult {
         return .failure(.failedToFetchElements)

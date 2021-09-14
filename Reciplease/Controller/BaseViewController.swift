@@ -30,8 +30,8 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoadingIndicator()
+        //self.view.addSubview(activityIndicatorView)
     }
-    
     
     private var activityIndicatorView: UIActivityIndicatorView!
     
@@ -44,5 +44,14 @@ class BaseViewController: UIViewController {
         activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         activityIndicatorView.color = .white
     }
+   /* private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        activityIndicatorView.color = .white
+        return activityIndicatorView
+    }()*/
     
 }

@@ -21,33 +21,12 @@ protocol ContextProviderProtocol {
 
 class ContextProvider: ContextProviderProtocol {
     
-    static func getContext(
-        shouldBeInMemory: Bool,
-        fromContainer container: NSPersistentContainer = NSPersistentContainer(name: "Reciplease"),
-        stopExecution: @escaping (@autoclosure () -> String, StaticString, UInt) -> Never
-            = Swift.fatalError) -> NSManagedObjectContext {
-        
-        
-        if shouldBeInMemory {
-            let description = NSPersistentStoreDescription()
-            description.type = NSInMemoryStoreType
-            description.shouldAddStoreAsynchronously = false
-            
-            container.persistentStoreDescriptions = [description]
-        }
-        
+    
+    lazy var context: NSManagedObjectContext = {
+        let container: NSPersistentContainer = NSPersistentContainer(name: "Reciplease")
         container.loadPersistentStores { _, _ in }
-        
-        let context = container.viewContext
-        return context
-    }
-    
-    
-    init(context: NSManagedObjectContext = getContext(shouldBeInMemory: false)) {
-        self.context = context
-    }
-    
-    let context: NSManagedObjectContext
+        return container.viewContext
+    }()
     
     
     

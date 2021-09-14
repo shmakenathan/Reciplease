@@ -13,9 +13,16 @@
 "kindOfMeal" = " Type de Cuisine";
 "Unknown" = "Inconnu";
 "yourIngredient" = "Vos ingredients (en anglais)";
-"whatsInYourFridge" = "Que se trouve t'il dans votre frigo ?";
-"searchForRecipe" = "Recherchez Recette";
-"getDirections" = "Vers la Recette";
+"whatsInYourFridge" = "Qu'est ce qu'il a dans votre frigo ?";
+"searchForRecipe" = "Recherchez";
+"getDirections" = "Instructions";
 "kcal" = "kcal";
 "min" = "min";
 "error" = "Erreur";
+"titleFridge" = "Frigo";
+"titleRecipes" = "Recette";
+"titleRecipeDetails" = "Details de la Recette";
+"searchNewFav" = "+ Ajoutez une nouvelle recette";
+"favorite" = "Favoris";
+"search" = "Recherchez";
+

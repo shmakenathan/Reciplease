@@ -43,10 +43,6 @@ class RecipeTableViewCell: UITableViewCell {
         gradientView.layer.addSublayer(gradientLayer)
     }
     
-    
-    func configure(title: String) {
-        
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
