@@ -14,6 +14,8 @@ class RecipleaseTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarItemsTitle()
+        
+        
     }
     
     

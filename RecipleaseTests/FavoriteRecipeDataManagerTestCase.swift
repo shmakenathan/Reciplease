@@ -15,30 +15,6 @@ class FavoriteRecipeDataManagerTestCase: XCTestCase {
         }
         
     }
-    
-//    func testGivenSave() {
-//        let mock = CoreDataManagerMock()
-//        let favoriteRecipeDataManager = FavoriteRecipeDataManager(coreDataManager: mock)
-//
-//        let recipeToSave = Recipe(
-//            label: "testlabel",
-//            image: "image",
-//            url: "url",
-//            ingredientLines: ["ingredient1test"],
-//            totalTime: 100
-//        )
-//
-//        let result = favoriteRecipeDataManager.save(recipeToSave: recipeToSave)
-//
-//        switch result {
-//        case .failure:
-//            XCTFail()
-//        case .success:
-//            XCTAssertEqual(true, true)
-//        }
-//
-//    }
-//
-    
+ 
     
 }

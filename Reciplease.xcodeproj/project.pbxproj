@@ -23,7 +23,7 @@
 		D827B99B2567B7EF008CAEAE /* FavoriteRecipeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D827B99A2567B7EF008CAEAE /* FavoriteRecipeDataManager.swift */; };
 		D8299FDA263A8C9D001E9F00 /* FridgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8299FD9263A8C9D001E9F00 /* FridgeService.swift */; };
 		D8299FE0263B262D001E9F00 /* FridgeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8299FDF263B262D001E9F00 /* FridgeServiceTests.swift */; };
-		D830FB2B25411180006214ED /* UrlSessionNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB2A25411180006214ED /* UrlSessionNetworkManager.swift */; };
+		D830FB2B25411180006214ED /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB2A25411180006214ED /* AlamofireNetworkManager.swift */; };
 		D830FB2F254111C0006214ED /* NetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB2E254111C0006214ED /* NetworkManagerError.swift */; };
 		D830FB332541189B006214ED /* RecipeNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830FB322541189B006214ED /* RecipeNetworkManager.swift */; };
 		D84AAF4526B7CE7F00C893A8 /* FridgeServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AAF4426B7CE7F00C893A8 /* FridgeServiceError.swift */; };
@@ -86,7 +86,7 @@
 		D8299FD9263A8C9D001E9F00 /* FridgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeService.swift; sourceTree = "<group>"; };
 		D8299FDF263B262D001E9F00 /* FridgeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeServiceTests.swift; sourceTree = "<group>"; };
 		D830FB252541109D006214ED /* RecipeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchResponse.swift; sourceTree = "<group>"; };
-		D830FB2A25411180006214ED /* UrlSessionNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionNetworkManager.swift; sourceTree = "<group>"; };
+		D830FB2A25411180006214ED /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		D830FB2E254111C0006214ED /* NetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerError.swift; sourceTree = "<group>"; };
 		D830FB322541189B006214ED /* RecipeNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeNetworkManager.swift; sourceTree = "<group>"; };
 		D84AAF4426B7CE7F00C893A8 /* FridgeServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeServiceError.swift; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 				D8E6756B2582D1D800B90574 /* RecipeUrlProviderMock.swift */,
 				D80BB8DC265F6EBE003A16CA /* AlamofireSessionMock.swift */,
 				D84AAF4626B7D15000C893A8 /* CoreDataManagerMock.swift */,
+				D8E6754E2582BD6000B90574 /* NetworkManagerMockRecipeSuccess.swift */,
 				D84AAF4A26B7E70D00C893A8 /* ContextProviderMock.swift */,
 			);
 			path = Mock;
@@ -175,7 +176,6 @@
 				D8A31F2726E5F02700875006 /* UIView+Border.swift */,
 				D86679BA252EF2CA005C56F6 /* FridgeViewController.swift */,
 				D85542A4254A32A4002BF3AB /* BaseViewController.swift */,
-				D85542A02549F1B2002BF3AB /* RecipleaseError.swift */,
 				D86679DD252EF5BD005C56F6 /* RecipeDetailsViewController.swift */,
 				D85542A8254AB294002BF3AB /* RecipleaseNavigationController.swift */,
 				D822803C26F08E46008D6572 /* RecipleaseTabBarController.swift */,
@@ -213,11 +213,12 @@
 		D830FB292541116F006214ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				D830FB2A25411180006214ED /* UrlSessionNetworkManager.swift */,
+				D830FB2A25411180006214ED /* AlamofireNetworkManager.swift */,
 				D8299FD9263A8C9D001E9F00 /* FridgeService.swift */,
 				D830FB322541189B006214ED /* RecipeNetworkManager.swift */,
 				D8E675672582D03400B90574 /* RecipeUrlProvider.swift */,
 				D830FB2E254111C0006214ED /* NetworkManagerError.swift */,
+				D85542A02549F1B2002BF3AB /* RecipleaseError.swift */,
 				D8AC2B632566F87200A0B4E8 /* CoreData */,
 				D80BB8E0265F6F4F003A16CA /* AlamofireSession.swift */,
 				D84AAF4426B7CE7F00C893A8 /* FridgeServiceError.swift */,
@@ -270,7 +271,6 @@
 				D88E630025835FD000C34200 /* FavoriteRecipeDataManagerTestCase.swift */,
 				D8299FDF263B262D001E9F00 /* FridgeServiceTests.swift */,
 				D80FBB5826C309AD00867D7D /* ConvertRecipeSaveToRecipeTest.swift */,
-				D8E6754E2582BD6000B90574 /* NetworkManagerMockRecipeSuccess.swift */,
 				D8E675402578A3A400B90574 /* RecipeResult.json */,
 				D84AAF4826B7DD8000C893A8 /* FavoriteRecipeDataManagerTests.swift */,
 				D84AAF4C26B7E74F00C893A8 /* CoreDataManagerTests.swift */,
@@ -489,7 +489,7 @@
 				D80FBB6326CA4C5B00867D7D /* Strings.swift in Sources */,
 				D84AAF5826BD5D3800C893A8 /* RecipeSave+CoreDataClass.swift in Sources */,
 				D80BB8D926563D8C003A16CA /* RecipeSearchResponse.swift in Sources */,
-				D830FB2B25411180006214ED /* UrlSessionNetworkManager.swift in Sources */,
+				D830FB2B25411180006214ED /* AlamofireNetworkManager.swift in Sources */,
 				D84AAF5926BD5D3800C893A8 /* RecipeSave+CoreDataProperties.swift in Sources */,
 				D8E67539256F3E9600B90574 /* RecipeSaveToRecipeConverter.swift in Sources */,
 				D830FB332541189B006214ED /* RecipeNetworkManager.swift in Sources */,

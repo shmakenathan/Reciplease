@@ -13,6 +13,7 @@ class RecipleaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
 

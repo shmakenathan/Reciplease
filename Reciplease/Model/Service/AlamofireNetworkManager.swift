@@ -1,5 +1,5 @@
 //
-//  UrlSessionNetworkManager.swift
+//  AlamofireNetworkManager.swift
 //  Reciplease
 //
 //  Created by Nathan on 22/10/2020.
